@@ -1,5 +1,6 @@
 import React from "react";
 import "./style.css";
+import API from "../../utils/API";
 
 class SearchForm extends React.Component {
 
@@ -8,7 +9,18 @@ class SearchForm extends React.Component {
         this.state = {
             zipcode: 0
         }
-    }
+    };
+
+    handleFormSubmit = event => {
+        event.preventDefault();
+        if (this.state.search) {
+          API.queryBook({
+            query: this.state.search
+          })
+            .then(res => this.loadBooks())
+            .catch(err => console.log(err));
+        }
+      };
 
     render() {
         return (
