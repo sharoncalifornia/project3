@@ -1,0 +1,77 @@
+
+/* header */
+
+#navbar {
+	padding: 20px 0;
+	background-color: #6b092a;
+	border-bottom: 3px solid rgb(200, 193, 13);
+	margin: 0;
+}
+
+.nav-item {
+	color: #ffffff;
+}
+
+.form-inline {
+	flex-flow: nowrap;
+}
+
+#container {
+	margin: 0;
+	max-width: 100%; 
+	padding: 0;	
+}
+
+body {
+	overflow-y: hidden;
+}
+
+.dropdown:hover>.dropdown-menu {
+	display: block;
+}
+  
+.dropdown>.dropdown-toggle:active {
+	pointer-events: none;
+}
+
+.dropdown-toggle::after {
+    display:none;
+}
+	
+.dropdown-menu {
+	text-align: right
+}
+
+#content {
+	height:100vh;	  
+}
+
+.main-image {
+  background: 
+		url("/images/delmar.jpg");
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: cover; 	
+}
+	
+.fill {
+	background-size: cover;
+	height: 70%;
+	overflow: hidden;
+}
+
+.card{
+	width:250px;
+	display: inline-block;
+	margin: 10px;
+}
+
+.row-div {
+	max-height: 800px;
+	overflow-y: scroll;
+	width: 90%;
+}
+
+.card-title {
+	height: 50px;
+}
