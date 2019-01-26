@@ -2,6 +2,7 @@ import React from "react";
 import "./style.css";
 import FormBtn from "../../components/FormBtn";
 import Checkbox from "../../components/Checkbox";
+import Api from "../../utils/API"
 
 const OPTIONS = ["Restaurants", "Hotels", "Recreations", "Bars", "Meetups", "Others"];
 
@@ -43,6 +44,15 @@ class SearchForm extends React.Component {
 
         console.log(JSON.stringify(this.state));
         // call api, still need to validate the text fields to make sure they are not empty
+        const citySearchParams={
+            city_zip: this.state.city_zip,
+            nearby: this.state.nearby
+        }
+        return Api.searchCity(citySearchParams)
+            .then(cityResults=>{
+                return this.setState({results:cityResults})
+            })
+            .catch(err=>console.log(err.response.data))
 
     };
 
