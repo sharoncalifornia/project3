@@ -1,58 +1,91 @@
 import React from "react";
 import "./style.css";
-import API from "../../utils/API";
+import FormBtn from "../../components/FormBtn";
+import Checkbox from "../../components/Checkbox";
+
+const OPTIONS = ["Restaurants", "Hotels", "Recreations", "Bars", "Meetups", "Others"];
 
 class SearchForm extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            zipcode: 0
-        }
+    state = {
+        categories: OPTIONS.reduce(
+            (options, option) => ({
+                ...options,
+                [option]: false
+            }),
+            {}
+        ),
+        city_zip: "",
+        nearby: "",
+    }
+
+    createCheckbox = option => (
+        <Checkbox
+            label={option}
+            isSelected={this.state.categories[option]}
+            onCheckboxChange={this.handleCheckboxChange}
+            key={option}
+        />
+    );
+
+    createCheckboxes = () => OPTIONS.map(this.createCheckbox);
+
+    // updating component state when the user types into the input field
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({
+            [name]: value
+        });
     };
 
     handleFormSubmit = event => {
         event.preventDefault();
-        if (this.state.search) {
-          API.queryBook({
-            query: this.state.search
-          })
-            .then(res => this.loadBooks())
-            .catch(err => console.log(err));
-        }
-      };
+
+        console.log(JSON.stringify(this.state));
+        // call api, still need to validate the text fields to make sure they are not empty
+
+    };
+
+    handleCheckboxChange = changeEvent => {
+        const { name } = changeEvent.target;
+
+        this.setState(prevState => ({
+            categories: {
+                ...prevState.categories,
+                [name]: !prevState.categories[name]
+            }
+        }));
+    };
 
     render() {
         return (
-            <div className="container form-div col-6">
-                <form class="dest-form p2 m2">
-                    <div class="form-group row">
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="name" placeholder="City, Zip" required />
+            <div className="container-fluid col-md-6 mt-5">
+                <form className="dest-form">
+                    <div className="form-group row">
+                        <div className="col-sm-6">
+                            <input className="form-control" name="city_zip" placeholder="City or Zipcode"
+                                value={this.state.city_zip}
+                                onChange={this.handleInputChange} required />
                         </div>
                         <label for="destination" className="col-sm-6 col-form-label">Destination</label>
                     </div>
-                    <div class="form-group row">
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="preference" placeholder="General preferences" required />
+
+                    <div className="form-group row">
+                        <div className="col-sm-6">
+                            <input className="form-control" name="nearby" placeholder="General preferences"
+                                value={this.state.nearby}
+                                onChange={this.handleInputChange} required />
                         </div>
-                        <label for="nearby" class="col-sm-6 col-form-label">Beach&nbsp;,By the airport</label>
+                        <label for="nearby" class="col-sm-6 col-form-label">Beach,&nbsp;Mountain,&nbsp;By the airport</label>
                     </div>
-                    <div className="form-group instruct">
-                        <div className="form-group category">
-                            <h4><label for="selections">Find:</label></h4>
-                            <select className="form-control" id="category">
-                                <option value="" disabled selected>Select an Option</option>
-                                <option value="1">Restaurants</option>
-                                <option value="2">Bars</option>
-                                <option value="3">Meetups</option>
-                                <option value="4">Hotels</option>
-                                <option value="5">Recreations</option>
-                                <option value="6">Others</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-primary submit">Search</button>
+
+                    <div className="col-md-12">
+                        <h4 className="col-md-4 col-md-offset-4"><label for="selections">Find:</label></h4>
+                        {this.createCheckboxes()}
                     </div>
+
+                    <FormBtn onClick={this.handleFormSubmit}>Search</FormBtn>
+
                 </form >
             </div >
         );

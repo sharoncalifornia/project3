@@ -67,8 +67,7 @@ body {
 }
 
 .row-div {
-	max-height: 800px;
-	overflow-y: scroll;
+	height: 34%;
 	width: 90%;
 }
 

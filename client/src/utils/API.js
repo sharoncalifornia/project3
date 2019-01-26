@@ -19,5 +19,8 @@ export default {
     return axios.post("/api/travels", bookData);
   },
 
+  yelpSearch: function(type, location) {
+    return axios.get("/api/")
+  }
 
 };
