@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./style.css";
-import SearchForm from "../SearchForm";
 
-class Home extends Component {
+class Result extends Component {
+
     constructor(props) {
         super(props);
     }
@@ -12,7 +12,7 @@ class Home extends Component {
             <div class="fill main-image">
                 <div id="content">
                     <div className="row-div col-md-12">
-                        <SearchForm />
+                        <h2>Results</h2>
                     </div>
                 </div>
             </div>
@@ -20,4 +20,4 @@ class Home extends Component {
     }
 }
 
-export default Home;
+export default Result;
