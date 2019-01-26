@@ -49,7 +49,7 @@ class SearchForm extends React.Component {
                 city_zip: this.state.city_zip,
                 term: "Hotels"
             };
-            API.yelpSearch(params)
+            return API.yelpSearch(params)
               .then(res => {
                   console.log(res);
                   return this.setState({result: res.data})
