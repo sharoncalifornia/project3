@@ -25,5 +25,13 @@ export default {
         console.log(params)
         return axios.get("/api/citysearch", { params })
             .then(results => results)
-    }
-}
+    },
+
+    yelpSearch: function(params) {
+        // var term = params.term;
+        // var location = params.city_zip;
+        return axios.get("/api/yelp/Search", {params})
+          .then(results => results);
+      }
+};
+
