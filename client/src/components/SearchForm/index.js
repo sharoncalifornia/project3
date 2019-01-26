@@ -8,7 +8,7 @@ const OPTIONS = ["Restaurants", "Hotels", "Recreations", "Bars", "Meetups", "Oth
 class SearchForm extends React.Component {
 
     state = {
-        checkboxes: OPTIONS.reduce(
+        categories: OPTIONS.reduce(
             (options, option) => ({
                 ...options,
                 [option]: false
@@ -16,13 +16,13 @@ class SearchForm extends React.Component {
             {}
         ),
         city_zip: "",
-        prefs: "",
+        nearby: "",
     }
 
     createCheckbox = option => (
         <Checkbox
             label={option}
-            isSelected={this.state.checkboxes[option]}
+            isSelected={this.state.categories[option]}
             onCheckboxChange={this.handleCheckboxChange}
             key={option}
         />
@@ -30,7 +30,7 @@ class SearchForm extends React.Component {
 
     createCheckboxes = () => OPTIONS.map(this.createCheckbox);
 
-    // Handles updating component state when the user types into the input field
+    // updating component state when the user types into the input field
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
@@ -40,15 +40,9 @@ class SearchForm extends React.Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-        console.log("handle form submit event: ");
-        Object.keys(this.state.checkboxes)
-            .filter(checkbox => this.state.checkboxes[checkbox])
-            .forEach(checkbox => {
-                console.log(checkbox, "is selected.");
-            });
-        console.log(this.state.prefs);
-        console.log(this.state.city_zip);
-        // calling api here
+
+        console.log(JSON.stringify(this.state));
+        // call api, still need to validate the text fields to make sure they are not empty
 
     };
 
@@ -56,9 +50,9 @@ class SearchForm extends React.Component {
         const { name } = changeEvent.target;
 
         this.setState(prevState => ({
-            checkboxes: {
-                ...prevState.checkboxes,
-                [name]: !prevState.checkboxes[name]
+            categories: {
+                ...prevState.categories,
+                [name]: !prevState.categories[name]
             }
         }));
     };
@@ -69,7 +63,7 @@ class SearchForm extends React.Component {
                 <form className="dest-form">
                     <div className="form-group row">
                         <div className="col-sm-6">
-                            <input className="form-control" name="city_zip" placeholder="City, Zip"
+                            <input className="form-control" name="city_zip" placeholder="City or Zipcode"
                                 value={this.state.city_zip}
                                 onChange={this.handleInputChange} required />
                         </div>
@@ -78,8 +72,8 @@ class SearchForm extends React.Component {
 
                     <div className="form-group row">
                         <div className="col-sm-6">
-                            <input className="form-control" name="prefs" placeholder="General preferences"
-                                value={this.state.prefs}
+                            <input className="form-control" name="nearby" placeholder="General preferences"
+                                value={this.state.nearby}
                                 onChange={this.handleInputChange} required />
                         </div>
                         <label for="nearby" class="col-sm-6 col-form-label">Beach,&nbsp;Mountain,&nbsp;By the airport</label>

@@ -9,6 +9,15 @@
 	height:100vh;	  
 }
 
+.result-image {
+  background: 
+		url("/images/coronado-bridge.jpg");
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: cover; 	
+}
+
+
 
 
 
