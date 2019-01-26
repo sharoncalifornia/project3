@@ -1,5 +1,5 @@
 import axios from "axios";
-import yelp from "yelp-fusion";
+// import yelp from "yelp-fusion";
 
 export default {
   // Gets all books
@@ -19,8 +19,11 @@ export default {
     return axios.post("/api/travels", bookData);
   },
 
-  yelpSearch: function(type, location) {
-    return axios.get("/api/")
+  yelpSearch: function(params) {
+    // var term = params.term;
+    // var location = params.city_zip;
+    return axios.get("/api/yelp/Search", {params})
+      .then(results => results);
   }
 
 };

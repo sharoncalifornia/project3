@@ -4,6 +4,6 @@ const yelpRoutes = require("./yelp")
 
 // travel routes
 router.use("/travels", travelRoutes);
-router.use("/yelp", travelRoutes);
+router.use("/yelp", yelpRoutes);
 
 module.exports = router;
