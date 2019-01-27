@@ -29,6 +29,6 @@
   font-style: bold !important;
 }
 
-.center-container {
-	align-content: center;
-}
+/* .center-container {
+	justify-content: center;
+} */
