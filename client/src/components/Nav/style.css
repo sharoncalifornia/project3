@@ -43,7 +43,12 @@
 	color: #811237;
 }
 
-#dropdown-menu-id
-{
-	padding: 10px;
-}
+.normal {
+	color: rgb(236, 205, 205);
+  }
+  
+.active {
+	color: white;
+	font-weight: bold;
+  }
+

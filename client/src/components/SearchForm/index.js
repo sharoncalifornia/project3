@@ -90,11 +90,10 @@ class SearchForm extends React.Component {
 
                     <div className="form-group row">
                         <label htmlFor="find" className="col-form-label my-0">Find:</label>
-                    </div>
-
-                    <div className="col-sm-12 ml-5">
-                        {this.createCheckboxes()}
-                        <FormBtn onClick={this.handleFormSubmit}>Search</FormBtn>
+                        <div className="col-sm-12 ml-5">
+                            {this.createCheckboxes()}
+                            <FormBtn onClick={this.handleFormSubmit}>Search</FormBtn>
+                        </div>
                     </div>
                 </form >
             </div >

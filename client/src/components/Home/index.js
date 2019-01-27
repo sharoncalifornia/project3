@@ -3,9 +3,6 @@ import "./style.css";
 import SearchForm from "../SearchForm";
 
 class Home extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         return (

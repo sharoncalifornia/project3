@@ -19,7 +19,7 @@ class Login extends Component {
   handleChange = event => {
     const { name, value } = event.target;
     this.setState({
-        [name]: value
+      [name]: value
     });
   }
 
@@ -51,7 +51,7 @@ class Login extends Component {
             disabled={!this.validateForm()}
             onClick={this.handleSubmit}
           >
-            Login
+            Log in
           </div>
         </form>
       </div>
