@@ -28,3 +28,7 @@
 .col-form-label {
   font-style: bold !important;
 }
+
+.center-container {
+	align-content: center;
+}
