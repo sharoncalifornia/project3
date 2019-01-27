@@ -3,6 +3,8 @@
 	max-height: 500px;  
   /* overflow-y: scroll;  */
 	width: 100%;
+	font-size:20px;
+	font-family:'Lato', sans-serif;
 }
 
 .search-container {
@@ -15,7 +17,8 @@
 }
 
 .col-form-label {
-  font-weight: bold;
+	font-weight: bold;
+	font-size:22px;
 }
 
 .form-check-label {

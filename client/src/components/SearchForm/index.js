@@ -80,7 +80,7 @@ class SearchForm extends React.Component {
                                 value={this.state.city_zip}
                                 onChange={this.handleInputChange} required />
                         </div>
-                        <label for="destination" className="col-sm-6 col-form-label">Destination</label>
+                        <label htmlFor="destination" className="col-sm-6 col-form-label">Destination</label>
                     </div>
 
                     <div className="form-group row">
@@ -89,11 +89,11 @@ class SearchForm extends React.Component {
                                 value={this.state.nearby}
                                 onChange={this.handleInputChange} required />
                         </div>
-                        <label for="nearby" class="col-sm-6 col-form-label">Beach,&nbsp;Mountain,&nbsp;By the airport</label>
+                        <label htmlFor="nearby" className="col-sm-6 col-form-label">Beach,&nbsp;Mountain,&nbsp;By the airport</label>
                     </div>
 
                     <div className="col-md-12">
-                        <h4 className="col-md-4 col-md-offset-4"><label for="selections">Find:</label></h4>
+                        <h4 className="col-md-4 col-md-offset-4"><label htmlFor="selections">Find:</label></h4>
                         {this.createCheckboxes()}
                     </div>
 

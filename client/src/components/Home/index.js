@@ -9,7 +9,7 @@ class Home extends Component {
 
     render() {
         return (
-            <div class="fill main-image">
+            <div className="fill main-image">
                 <div id="content">
                     <div className="row-div col-md-12">
                         <SearchForm />
