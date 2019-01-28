@@ -47,7 +47,7 @@ class SearchForm extends React.Component {
         if (this.state.categories.Hotels) {
             const params = {
                 city_zip: this.state.city_zip,
-                term: "Restaurants"
+                term: "Hotels"
             };
             API.yelpSearch(params)
                 .then(res => {
