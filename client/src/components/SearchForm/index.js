@@ -44,18 +44,83 @@ class SearchForm extends React.Component {
 
         console.log(JSON.stringify(this.state));
         // call api, still need to validate the text fields to make sure they are not empty
-        if (this.state.categories.Hotels) {
-            const params = {
-                city_zip: this.state.city_zip,
-                term: "Hotels"
-            };
-            API.yelpSearch(params)
+        if(this.state.city_zip){
+            // const params = {
+            //     location: this.state.city_zip,
+            //     term: ""
+            // };
+
+            //each checkmark searches for different status
+            if (this.state.categories.Hotels) {
+                // params.term = "Hotel";
+                const paramsHotel = {
+                    location: this.state.city_zip,
+                    term: "Hotel"
+                };
+                API.yelpSearch(paramsHotel)
                 .then(res => {
-                    console.log(res);
-                    return this.setState({ result: res.data })
+                    // console.log(res);
+                    return this.setState({ resultHotel: res.data })
                 })
                 .catch(err => console.log(err));
+        
+            }  
+            if (this.state.categories.Bars){
+                // params.term = "Bars";
+                const paramsBar = {
+                    location: this.state.city_zip,
+                    term: "Bars"
+                };
+                API.yelpSearch(paramsBar)
+                .then(res => {
+                    // console.log(res);
+                    return this.setState({ resultBar: res.data })
+                })
+                .catch(err => console.log(err));
+            }  
+            if (this.state.categories.Meetups){
+                // params.term = "Meetups";
+                const paramsMeet = {
+                    location: this.state.city_zip,
+                    term: "Meetups"
+                };
+                API.yelpSearch(paramsMeet)
+                .then(res => {
+                    // console.log(res);
+                    return this.setState({ resultMeetup: res.data })
+                })
+                .catch(err => console.log(err));
+            }  
+            if (this.state.categories.Recreation){
+                // params.term = "Recreation";
+                const paramsRec = {
+                    location: this.state.city_zip,
+                    term: "Recreation"
+                };
+                API.yelpSearch(paramsRec)
+                .then(res => {
+                    // console.log(res);
+                    return this.setState({ resultRecreation: res.data })
+                })
+                .catch(err => console.log(err));
+            }  
+            if (this.state.categories.Restaurants){
+                // params.term = "Restaurants";
+                const paramsRest = {
+                    location: this.state.city_zip,
+                    term: "Restaurants"
+                };
+                API.yelpSearch(paramsRest)
+                .then(res => {
+                    // console.log(res);
+                    return this.setState({ resultRestaurant: res.data })
+                })
+                .catch(err => console.log(err));
+            }
+
+            
         }
+        
 
     };
 

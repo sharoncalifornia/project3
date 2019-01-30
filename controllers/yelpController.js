@@ -12,19 +12,18 @@ module.exports = {
         //   console.log("https://api.yelp.com/v3/businesses/search?term=" + req.params.term + "&location=" + req.params.location);
         // req.query would be term=" + req.params.term + "&location=" + req.params.location
         const query = {
-            location: req.query.city_zip,
-            term: req.query.term
+            ...req.query
         };
 console.log(query);
         const requestParams = {
-            params:query,
+            params: query,
             headers: { Authorization: `Bearer ${YelpKey}` }
         };
         console.log("requestParams:");
 console.log(requestParams);
         return axios.get("https://api.yelp.com/v3/businesses/search", {...requestParams})
             .then(({data}) => {
-                console.log(data, "data")
+                // console.log(data, "data")
                 return res.status(200).json(data)
             })
             .catch(err => res.status(422).json(err));
