@@ -47,6 +47,8 @@ class SearchForm extends React.Component {
         if(this.state.city_zip){
             // const params = {
             //     location: this.state.city_zip,
+                //  sort_by: "distance",
+                //  radius: 8000,
             //     term: ""
             // };
 
@@ -55,6 +57,8 @@ class SearchForm extends React.Component {
                 // params.term = "Hotel";
                 const paramsHotel = {
                     location: this.state.city_zip,
+                    sort_by: "distance",
+                    radius: 8000,
                     term: "Hotel"
                 };
                 API.yelpSearch(paramsHotel)
@@ -69,6 +73,8 @@ class SearchForm extends React.Component {
                 // params.term = "Bars";
                 const paramsBar = {
                     location: this.state.city_zip,
+                    sort_by: "distance",
+                    radius: 8000,
                     term: "Bars"
                 };
                 API.yelpSearch(paramsBar)
@@ -82,6 +88,8 @@ class SearchForm extends React.Component {
                 // params.term = "Meetups";
                 const paramsMeet = {
                     location: this.state.city_zip,
+                    sort_by: "distance",
+                    radius: 8000,
                     term: "Meetups"
                 };
                 API.yelpSearch(paramsMeet)
@@ -95,6 +103,8 @@ class SearchForm extends React.Component {
                 // params.term = "Recreation";
                 const paramsRec = {
                     location: this.state.city_zip,
+                    sort_by: "distance",
+                    radius: 8000,
                     term: "Recreation"
                 };
                 API.yelpSearch(paramsRec)
@@ -108,6 +118,8 @@ class SearchForm extends React.Component {
                 // params.term = "Restaurants";
                 const paramsRest = {
                     location: this.state.city_zip,
+                    sort_by: "distance",
+                    radius: 8000,
                     term: "Restaurants"
                 };
                 API.yelpSearch(paramsRest)
