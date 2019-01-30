@@ -50,12 +50,12 @@ class SearchForm extends React.Component {
                 term: "Hotels"
             };
             API.yelpSearch(params)
-              .then(res => {
-                  console.log(res);
-                  return this.setState({result: res.data})
-              })
-              .catch(err => console.log(err));
-          }
+                .then(res => {
+                    console.log(res);
+                    return this.setState({ result: res.data })
+                })
+                .catch(err => console.log(err));
+        }
 
     };
 
@@ -72,33 +72,29 @@ class SearchForm extends React.Component {
 
     render() {
         return (
-            <div className="container-fluid col-md-6 mt-5">
+            <div className="container-fluid col-md-3 mt-5">
                 <form className="dest-form">
                     <div className="form-group row">
-                        <div className="col-sm-6">
-                            <input className="form-control" name="city_zip" placeholder="City or Zipcode"
-                                value={this.state.city_zip}
-                                onChange={this.handleInputChange} required />
-                        </div>
-                        <label for="destination" className="col-sm-6 col-form-label">Destination</label>
+                        <label htmlFor="destination" className="col-form-label">Destination</label>
+                        <input className="form-control" name="city_zip" placeholder="City or Zipcode"
+                            value={this.state.city_zip}
+                            onChange={this.handleInputChange} required />
                     </div>
 
                     <div className="form-group row">
-                        <div className="col-sm-6">
-                            <input className="form-control" name="nearby" placeholder="General preferences"
-                                value={this.state.nearby}
-                                onChange={this.handleInputChange} required />
+                        <label htmlFor="nearby" className="col-form-label">Beach,&nbsp;Mountain,&nbsp;By the airport</label>
+                        <input className="form-control" name="nearby" placeholder="General preferences"
+                            value={this.state.nearby}
+                            onChange={this.handleInputChange} required />
+                    </div>
+
+                    <div className="form-group row">
+                        <label htmlFor="find" className="col-form-label my-0">Find:</label>
+                        <div className="col-sm-12 ml-5">
+                            {this.createCheckboxes()}
+                            <FormBtn onClick={this.handleFormSubmit}>Search</FormBtn>
                         </div>
-                        <label for="nearby" class="col-sm-6 col-form-label">Beach,&nbsp;Mountain,&nbsp;By the airport</label>
                     </div>
-
-                    <div className="col-md-12">
-                        <h4 className="col-md-4 col-md-offset-4"><label for="selections">Find:</label></h4>
-                        {this.createCheckboxes()}
-                    </div>
-
-                    <FormBtn onClick={this.handleFormSubmit}>Search</FormBtn>
-
                 </form >
             </div >
         );

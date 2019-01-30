@@ -1,0 +1,20 @@
+@media all and (min-width: 480px) {
+	.Signup {
+		padding: 60px 0;
+		font-family:'Lato', sans-serif;
+	}
+  
+	.Signup form {
+	  margin: 0 auto;
+	  max-width: 320px;
+	}
+
+	.confirm-btn {
+		margin: 0, auto;
+		background-color: #6b092a;
+		color: white;
+	}
+
+
+  }
+  
