@@ -4,7 +4,7 @@ import FormBtn from "../../components/FormBtn";
 import Checkbox from "../../components/Checkbox";
 import API from "../../utils/API";
 
-const OPTIONS = ["Restaurants", "Hotels", "Recreations", "Bars", "Meetups", "Others"];
+const OPTIONS = ["Restaurants", "Hotels", "Recreation", "Bars", "Meetups", "Other"];
 
 class SearchForm extends React.Component {
 
