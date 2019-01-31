@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./style.css";
+import { withRouter } from 'react-router-dom'
 
 class Result extends Component {
 
@@ -8,11 +9,13 @@ class Result extends Component {
     }
 
     render() {
+        console.log(this.props.location.state.detail);
         return (
-            <div class="fill result-image">
+            <div className="fill result-image">
                 <div id="content">
                     <div className="row-div col-md-12">
-                        <h2>Results</h2>
+
+                        <h4>{this.props.location.state.detail}</h4>
                     </div>
                 </div>
             </div>
@@ -20,4 +23,4 @@ class Result extends Component {
     }
 }
 
-export default Result;
+export default withRouter(Result);

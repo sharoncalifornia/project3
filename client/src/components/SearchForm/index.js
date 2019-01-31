@@ -3,6 +3,7 @@ import "./style.css";
 import FormBtn from "../../components/FormBtn";
 import Checkbox from "../../components/Checkbox";
 import API from "../../utils/API";
+import { withRouter } from 'react-router-dom'
 
 const OPTIONS = ["Restaurants", "Hotels", "Recreation", "Bars", "Meetups", "Other"];
 
@@ -40,15 +41,13 @@ class SearchForm extends React.Component {
     };
 
     handleFormSubmit = event => {
+        const history = this.props.history;
+
         event.preventDefault();
 
         console.log(JSON.stringify(this.state));
         // call api, still need to validate the text fields to make sure they are not empty
         if(this.state.city_zip){
-            // const params = {
-            //     location: this.state.city_zip,
-            //     term: ""
-            // };
 
             //each checkmark searches for different status
             if (this.state.categories.Hotels) {
@@ -59,7 +58,13 @@ class SearchForm extends React.Component {
                 };
                 API.yelpSearch(paramsHotel)
                 .then(res => {
-                    // console.log(res);
+                    console.log(res);
+                    let restData = {};
+                    restData.name = res.data.businesses[0].name;
+                    history.push({
+                        pathname: "/result",
+                         state: {detail: restData.name}
+                    });
                     return this.setState({ resultHotel: res.data })
                 })
                 .catch(err => console.log(err));
@@ -73,8 +78,17 @@ class SearchForm extends React.Component {
                 };
                 API.yelpSearch(paramsBar)
                 .then(res => {
-                    // console.log(res);
-                    return this.setState({ resultBar: res.data })
+                    console.log(res);
+                    // navigate
+                    let restData = {};
+                    restData.name = res.data.businesses[0].name;
+                    
+                    console.log(restData.name);
+                    history.push({
+                        pathname: "/result",
+                         state: {detail: restData.name}
+                    });
+                   // return this.setState({ result: res.data })
                 })
                 .catch(err => console.log(err));
             }  
@@ -136,6 +150,7 @@ class SearchForm extends React.Component {
     };
 
     render() {
+       // console.log(this.props.location.state.detail);
         return (
             <div className="container-fluid col-md-3 mt-5">
                 <form className="dest-form">
@@ -166,4 +181,4 @@ class SearchForm extends React.Component {
     }
 }
 
-export default SearchForm;
+export default withRouter(SearchForm);

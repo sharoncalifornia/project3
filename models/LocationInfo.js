@@ -8,6 +8,7 @@ const LocationInfoSchema = new Schema( {
 	description: String,  // place holder
 	address: Address,
 	phone: text,
+	stars: Number,
 	url: String
 });
 
