@@ -45,12 +45,13 @@ class SearchForm extends React.Component {
         console.log(JSON.stringify(this.state));
         // call api, still need to validate the text fields to make sure they are not empty
         if(this.state.city_zip){
-            // const params = {
-            //     location: this.state.city_zip,
-                //  sort_by: "distance",
-                //  radius: 8000,
-            //     term: ""
-            // };
+            const params = {
+                location: this.state.city_zip,
+                sort_by: "distance",
+                radius: 8000,
+                limit: 5,
+                term: []
+            };
 
             //each checkmark searches for different status
             if (this.state.categories.Hotels) {
@@ -59,8 +60,10 @@ class SearchForm extends React.Component {
                     location: this.state.city_zip,
                     sort_by: "distance",
                     radius: 8000,
+                    limit: 5,
                     term: "Hotel"
                 };
+                params.term.push("Hotel");
                 API.yelpSearch(paramsHotel)
                 .then(res => {
                     // console.log(res);
@@ -75,8 +78,10 @@ class SearchForm extends React.Component {
                     location: this.state.city_zip,
                     sort_by: "distance",
                     radius: 8000,
+                    limit: 5,
                     term: "Bars"
                 };
+                params.term.push("Bars");
                 API.yelpSearch(paramsBar)
                 .then(res => {
                     // console.log(res);
@@ -90,8 +95,10 @@ class SearchForm extends React.Component {
                     location: this.state.city_zip,
                     sort_by: "distance",
                     radius: 8000,
+                    limit: 5,
                     term: "Meetups"
                 };
+                params.term.push("Meetups");
                 API.yelpSearch(paramsMeet)
                 .then(res => {
                     // console.log(res);
@@ -105,8 +112,10 @@ class SearchForm extends React.Component {
                     location: this.state.city_zip,
                     sort_by: "distance",
                     radius: 8000,
+                    limit: 5,
                     term: "Recreation"
                 };
+                params.term.push("Recreation");
                 API.yelpSearch(paramsRec)
                 .then(res => {
                     // console.log(res);
@@ -120,12 +129,21 @@ class SearchForm extends React.Component {
                     location: this.state.city_zip,
                     sort_by: "distance",
                     radius: 8000,
+                    limit: 5,
                     term: "Restaurants"
                 };
+                params.term.push("Restaurants");
                 API.yelpSearch(paramsRest)
                 .then(res => {
                     // console.log(res);
                     return this.setState({ resultRestaurant: res.data })
+                })
+                .catch(err => console.log(err));
+            }
+            if(params.term.length > 0){
+                API.yelpSearchConsolidated(params)
+                .then(res => {
+                    return this.setState({result: res.data})
                 })
                 .catch(err => console.log(err));
             }
