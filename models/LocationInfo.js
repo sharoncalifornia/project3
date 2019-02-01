@@ -9,7 +9,7 @@ const LocationInfoSchema = new Schema( {
 	address: Address,
 	phone: text,
 	stars: Number,
-	url: String
+	url_image: String
 });
 
 const LocationInfo = mongoose.model("LocationInfo", LocationInfoSchema);

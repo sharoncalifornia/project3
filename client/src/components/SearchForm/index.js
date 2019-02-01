@@ -5,7 +5,7 @@ import Checkbox from "../../components/Checkbox";
 import API from "../../utils/API";
 import { withRouter } from 'react-router-dom'
 
-const OPTIONS = ["Restaurants", "Hotels", "Recreation", "Bars", "Meetups", "Other"];
+const OPTIONS = ["Restaurants", "Hotels", "Recreations", "Bars", "Meetups"];
 
 class SearchForm extends React.Component {
 
@@ -40,10 +40,32 @@ class SearchForm extends React.Component {
         });
     };
 
+    formatResultData = data => {
+        console.log("here"+data);
+        let resData = [];
+        for (let i =0; i<5; i++) {
+            let rec = {};
+            let bus = data.businesses[i];
+            rec.name = bus.name;
+            rec.phone = bus.display_phone;
+            rec.rating = bus.rating;
+            rec.price = bus.price;
+            rec.image_url = bus.image_url;
+            rec.address = {};
+            rec.address.street = bus.location.display_address[0];
+            rec.address.city = bus.location.city;
+            rec.address.state = bus.location.state;
+            rec.address.zipcode = bus.location.zip_code;
+            resData.push(rec);
+        }
+        return resData;
+    }
+
     handleFormSubmit = event => {
         const history = this.props.history;
 
         event.preventDefault();
+        //validateForm();
 
         console.log(JSON.stringify(this.state));
         // call api, still need to validate the text fields to make sure they are not empty
@@ -59,13 +81,14 @@ class SearchForm extends React.Component {
                 API.yelpSearch(paramsHotel)
                 .then(res => {
                     console.log(res);
-                    let restData = {};
-                    restData.name = res.data.businesses[0].name;
+                    let restData = this.formatResultData(res.data);
+
+                    // restData.name = res.data.businesses[0].name;
                     history.push({
                         pathname: "/result",
-                         state: {detail: restData.name}
+                         state: {details: restData}
                     });
-                    return this.setState({ resultHotel: res.data })
+                   // return this.setState({ resultHotel: res.data })
                 })
                 .catch(err => console.log(err));
         
@@ -148,6 +171,23 @@ class SearchForm extends React.Component {
             }
         }));
     };
+
+    //    componentDidMount() {
+    //        console.log("componentDidMount");
+    //     this._asyncRequest = asyncLoadData().then(
+    //         externalData => {
+    //             this._asyncRequest = null;
+    //             this.setState({ externalData });
+    //         }
+    //     );
+    // }
+
+    // componentWillUnmount() {
+    //     console.log("componentWillUnmount");
+    //     if (this._asyncRequest) {
+    //         this._asyncRequest.cancel();
+    //     }
+    // }
 
     render() {
        // console.log(this.props.location.state.detail);
