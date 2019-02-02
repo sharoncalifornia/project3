@@ -35,8 +35,12 @@ export default {
     },
 
     yelpSearchConsolidated: function(params) {
+      // console.log("running consolidated search");
       return axios.get("/api/yelp/SearchConsolidated", {params})
-      .then(result => result);
+      .then(result => {
+        // console.log("API passing result: " + JSON.stringify(result));
+        return result
+      });
     }
 
 };
