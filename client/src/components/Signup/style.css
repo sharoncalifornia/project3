@@ -14,7 +14,10 @@
 		background-color: #6b092a;
 		color: white;
 	}
-
+ 
+	#ErrorMsg {
+		color: red;
+	}
 
   }
   

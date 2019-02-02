@@ -4,6 +4,7 @@ import TravelCard from "../../components/TravelCard";
 import { withRouter } from 'react-router-dom'
 import FormBtn from "../FormBtn";
 
+
 class Result extends Component {
 
     constructor(props) {
@@ -11,32 +12,46 @@ class Result extends Component {
     }
 
     state = {
-        externalData: [],
+        detailsData: [],
+        saveStatuses: []
     }
 
-    handleFormSubmit = event => {
-        //const history = this.props.history;
-
+    handleFormSubmitSearch = event => {
         event.preventDefault();
-        console.log("handle submit: "+event.target);
+        const history = this.props.history;
+        history.push({
+            pathname: "/",
+        });
+    };
+
+    handleFormSubmitSave = event => {
+        event.preventDefault();
+        console.log("save, call API");
+        // call api to add data to DB
+    };
+
+    componentDidMount() {
+        this.setState({ detailsData: this.props.location.state.details });
+    }
+
+    handleCheckboxChange = label => {
+        console.log("checkbox check");
     };
 
     render() {
         if (this.props.location.state !== undefined) {
-            this.state.externalData = this.props.location.state.details;
             return (
                 <div className="fill result-image">
                     <div className="clearfix">
                         <div id="action-div">
-                            <FormBtn onClick={this.handleFormSubmit}>Search again</FormBtn>
-                            <FormBtn onClick={this.handleFormSubmit}>Save to My Account</FormBtn>
+                            <FormBtn name="search" onClick={this.handleFormSubmitSearch}>Search again</FormBtn>
+                            <FormBtn name="save" onClick={this.handleFormSubmitSave}>Save to My Account</FormBtn>
                         </div>
                     </div>
                     <div id="content">
-
                         <div className="row-div col-md-12">
                             {this.props.location.state.details.map(detail => (
-                                <TravelCard rec={detail} key={detail.phone}
+                                <TravelCard rec={detail} onCheckboxChange={this.handleCheckboxChange} key={detail.phone}
                                 />
                             ))}
                         </div>

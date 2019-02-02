@@ -9,24 +9,31 @@ class Signup extends Component {
       email: "",
       password: "",
       retypepassword: "",
+      errorMsg: ""
     };
   }
 
-  validateForm() {
-    // need more work here
-    return this.state.email.length > 0 && this.state.password.length > 0;
+  validateForm = () => {
+    let status = false;
+    const { email, password, retypepassword } = this.state;
+    if (email.length > 0 && password.length > 0 && retypepassword.length > 0) {
+      if (password === retypepassword) {
+        status = true;
+      }
+    }
+    return status;
   }
 
-  handleChange = event => {
-    const { name, value } = event.target;
-    this.setState({
-        [name]: value
-    });
-  }
-
-  handleSubmit = event => {
+  handleSignup = event => {
     event.preventDefault();
     console.log("handle signup submit");
+    if (this.validateForm()) {
+      console.log("call signup API");
+    }
+    else {
+      this.setState({ errorMsg: "Password not match" });
+      console.log("error");
+    }
   }
 
   render() {
@@ -36,32 +43,27 @@ class Signup extends Component {
           <div className="form-group">
             <label htmlFor="email" className="col-form-label">Email</label>
             <input className="form-control" name="email" placeholder="Email"
-              value={this.state.email}
               type="email"
-              onChange={this.handleChange} required />
+              onChange={event => this.setState({ email: event.target.value })} required />
           </div>
           <div className="form-group">
             <label htmlFor="password" className="col-form-label">Password</label>
             <input className="form-control password" name="password" placeholder="Password"
-              value={this.state.password}
               type="password"
-              onChange={this.handleChange}
-              required />
+              onChange={event => this.setState({ errorMsg: "", password: event.target.value })} required />
           </div>
           <div className="form-group">
             <label htmlFor="password" className="col-form-label">Re-type Password</label>
-            <input className="form-control password" name="retypepassword"  placeholder="Password"
-              value={this.state.retypepassword}
+            <input className="form-control password" name="retypepassword" placeholder="Password"
               type="password"
-              onChange={this.handleChange}
-              required />
+              onChange={event => this.setState({ errorMsg: "", retypepassword: event.target.value })} required />
           </div>
           <div className="button col-form-label text-center confirm-btn"
-            disabled={!this.validateForm()}
-            onClick={this.handleSubmit}
+            onClick={this.handleSignup}
           >
             Sign up
           </div>
+          <div id="ErrorMsg">{this.state.errorMsg}</div>
         </form>
       </div>
     );
