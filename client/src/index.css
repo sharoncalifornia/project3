@@ -4,11 +4,14 @@ body {
   margin: 0;
   padding: 0;
   font-family: Lato-bold;
-  color: white;
+  /* color: white;
   text-shadow:
       -1px -.5px 0 #000,
       1px -.5px 0 #000,
       -1px .5px 0 #000,
+<<<<<<< HEAD
+      1px .5px 0 #000; */
+=======
       1px .5px 0 #000;
 }
 
@@ -18,4 +21,5 @@ body {
   padding: 0;
   font-family: Lato-bold;
   color: #000;
+>>>>>>> f7eb3fb99304189049f1f82addbe2e37aaa684eb
 }

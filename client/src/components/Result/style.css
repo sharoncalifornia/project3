@@ -1,12 +1,13 @@
 .row-div {
-	height: 500px;  
-	max-height: 500px;  
-  /* overflow-y: scroll;  */
+	height: 900px;  
+	max-height: 900px;  
+  overflow-y: scroll;  
 	width: 100%;
 }
 
 #content {
 	height:100vh;	  
+	font-family: 'Lato';
 }
 
 .result-image {
@@ -15,6 +16,10 @@
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: cover; 	
+}
+
+#action-id {
+	margin: 10px;
 }
 
 
