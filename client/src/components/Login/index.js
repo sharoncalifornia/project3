@@ -35,6 +35,7 @@ class Login extends Component {
 
   render() {
     return (
+      <div class="fill login-image">
       <div className="Login">
         <form className="dest-form">
           <div className="form-group">
@@ -58,6 +59,7 @@ class Login extends Component {
           </div>
           <div id="ErrorMsg">{this.state.errorMsg}</div>
         </form>
+      </div>
       </div>
     );
   }

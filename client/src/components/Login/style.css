@@ -14,10 +14,22 @@
 		background-color: #6b092a;
 		color: white;
 	}
+	.login-image {
+		background: 
+			url("/images/coronado-bridge.jpg");
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: cover; 	
+	}
 
 	#ErrorMsg {
 		color: red;
 	}
 
-  }
   
+  .fill {
+		background-size: cover;
+		height: 70%;
+		overflow: hidden;
+	}
+}
