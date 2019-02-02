@@ -4,13 +4,6 @@ body {
   margin: 0;
   padding: 0;
   font-family: Lato-bold;
-  color: rgb(68, 68, 68);
-}
-
-.label {
-  margin: 0;
-  padding: 0;
-  font-family: Lato-bold;
   color: white;
   text-shadow:
       -1px -.5px 0 #000,
