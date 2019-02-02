@@ -5,4 +5,7 @@ const yelpController = require("../../controllers/yelpController");
 router.route("/Search")
   .get(yelpController.getYelpBusiness);
 
+router.route("/SearchConsolidated")
+  .get(yelpController.getYelpBusinessConsolidated);
+
 module.exports = router;
