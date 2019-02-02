@@ -54,12 +54,12 @@ class Result extends Component {
                             <FormBtn name="save" onClick={this.handleFormSubmitSave}>Save to My Account</FormBtn>
                         </div>
                     </div>
-                    <div id="content">
+                    <div className ="container" id="content">
                         <div className="row-div col-md-12">
-                            {this.props.location.state.details.map(detail => (
+                            {this.props.location.state.details ? this.props.location.state.details.map(detail => (
                                 <TravelCard rec={detail} onCheckboxChange={this.handleCheckboxChange} key={detail.phone}
                                 />
-                            ))}
+                            )) : <p>No Results Found</p>}
                         </div>
                     </div>
                 </div>
