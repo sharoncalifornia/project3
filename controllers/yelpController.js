@@ -11,9 +11,7 @@ module.exports = {
     getYelpBusiness: function (req, res) {
         //   console.log("https://api.yelp.com/v3/businesses/search?term=" + req.params.term + "&location=" + req.params.location);
         // req.query would be term=" + req.params.term + "&location=" + req.params.location
-        const query = {
-            ...req.query
-        };
+        const {query} = req;
 console.log(query);
         const requestParams = {
             params: query,
@@ -32,5 +30,36 @@ console.log(requestParams);
         // }).catch(e => {
         //     console.log(e);
         // });
+
+        /* try async the function and pass in paramaters and generate the query here, concat the results */
+    },
+    getYelpBusinessConsolidated: async function(req,res){
+        const termList = req.query.term;
+        var resultArray = [];
+        for(var i = 0; i < termList.length; i++){
+            //loop through term list
+            const query = {
+                ...req.query
+            };
+            query.term = termList[i];
+            const requestParams = {
+                params: query,
+                headers: { Authorization: `Bearer ${YelpKey}` }
+            };
+            resultArray.push( axios.get("https://api.yelp.com/v3/businesses/search", {...requestParams}) )
+        }
+
+        //result array has all of our promises
+        Promise.all(resultArray)
+        .then((result) => {
+            const retArray = [];
+            for (var i = 0; i < result.length; i++){
+                retArray.push(result[i].data);
+            }
+            res.status(200).json(retArray);
+        })
+        .catch(err => {
+            res.status(422).json(err)
+        })
     }
 }

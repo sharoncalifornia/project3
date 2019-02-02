@@ -7,29 +7,35 @@ class Login extends Component {
 
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      errorMsg:""
     };
   }
 
-  validateForm() {
-    // need more work
-    return this.state.email.length > 0 && this.state.password.length > 0;
+  validateForm = () => {
+    let status = false;
+    const { email, password } = this.state;
+    if (email.length > 0 && password.length > 0) {
+        status = true;
+    }
+    return status;
   }
 
-  handleChange = event => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
-  }
-
-  handleSubmit = event => {
+  handleLogin = event => {
     event.preventDefault();
     console.log("handle login submit");
+    if (this.validateForm()) {
+      console.log("call login API");
+    }
+    else {
+      this.setState({ errorMsg: "Password not match" });
+      console.log("error");
+    }
   }
 
   render() {
     return (
+      <div class="fill login-image">
       <div className="Login">
         <form className="dest-form">
           <div className="form-group">
@@ -37,23 +43,23 @@ class Login extends Component {
             <input className="form-control" name="email" placeholder="Email"
               value={this.state.email}
               type="email"
-              onChange={this.handleChange} required />
+              onChange={event => this.setState({ email: event.target.value })} required />
           </div>
           <div className="form-group">
             <label htmlFor="password" className="col-form-label">Password</label>
             <input className="form-control password" name="password" placeholder="Password"
               value={this.state.password}
               type="password"
-              onChange={this.handleChange}
-              required />
+              onChange={event => this.setState({ errorMsg: "", password: event.target.value })} required />
           </div>
           <div className="button col-form-label text-center confirm-btn"
-            disabled={!this.validateForm()}
-            onClick={this.handleSubmit}
+            onClick={this.handleLogin}
           >
             Log in
           </div>
+          <div id="ErrorMsg">{this.state.errorMsg}</div>
         </form>
+      </div>
       </div>
     );
   }
