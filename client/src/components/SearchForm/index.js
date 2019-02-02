@@ -58,7 +58,32 @@ class SearchForm extends React.Component {
         }
         );
         return resData;
-    }
+    };
+
+    formatResultDataArray = dataArray => {
+        let resData = [];
+        for(var i = 0; i < dataArray.length; i++){
+            //loop through data array
+            dataArray[i].businesses.forEach(function (item, i) {
+                let rec = {};
+                rec.name = item.name;
+                rec.phone = item.display_phone;
+                rec.rating = item.rating;
+                rec.price = item.price;
+                rec.image_url = item.image_url;
+                rec.address = {};
+                rec.address.street = item.location.display_address[0];
+                rec.address.city = item.location.city;
+                rec.address.state = item.location.state;
+                rec.address.zipcode = item.location.zip_code;
+                resData.push(rec);
+            }
+            );
+        }
+        
+        console.log("result number: " + resData.length)
+        return resData;
+    };
 
     // formatResultData = data => {
     //     console.log("here"+data);
@@ -101,106 +126,124 @@ class SearchForm extends React.Component {
 
             //each checkmark searches for different status
             if (this.state.categories.Hotels) {
-                const paramsHotel = {
-                    location: this.state.city_zip,
-                    sort_by: "distance",
-                    radius: 8000,
-                    limit: 5,
-                    term: "Hotel"
-                };
+                // const paramsHotel = {
+                //     location: this.state.city_zip,
+                //     sort_by: "distance",
+                //     radius: 8000,
+                //     limit: 5,
+                //     term: "Hotel"
+                // };
                 params.term.push("Hotel");
-                API.yelpSearch(paramsHotel)
-                    .then(res => {
-                        console.log(res);
-                        let restData = this.formatResultData(res.data);
-                        history.push({
-                            pathname: "/result",
-                            state: { details: restData }
-                        });
-                    })
-                    .catch(err => console.log(err));
+                // API.yelpSearch(paramsHotel)
+                //     .then(res => {
+                //         // console.log(res);
+                //         let restData = this.formatResultData(res.data);
+                //         history.push({
+                //             pathname: "/result",
+                //             state: { details: restData }
+                //         });
+                //     })
+                //     .catch(err => console.log(err));
 
             }
             if (this.state.categories.Bars) {
-                const paramsBar = {
-                    location: this.state.city_zip,
-                    sort_by: "distance",
-                    radius: 8000,
-                    limit: 5,
-                    term: "Bars"
-                };
+                // const paramsBar = {
+                //     location: this.state.city_zip,
+                //     sort_by: "distance",
+                //     radius: 8000,
+                //     limit: 5,
+                //     term: "Bars"
+                // };
                 params.term.push("Bars");
-                API.yelpSearch(paramsBar)
-                    .then(res => {
-                        console.log(res);
-                        // navigate
-                        let restData = {};
-                        restData.name = res.data.businesses[0].name;
-
-                        console.log(restData.name);
-                        history.push({
-                            pathname: "/result",
-                            state: { detail: restData.name }
-                        });
-                        // return this.setState({ result: res.data })
-                    })
-                    .catch(err => console.log(err));
+                // API.yelpSearch(paramsBar)
+                //     .then(res => {
+                //         // console.log(res);
+                //         let restData = this.formatResultData(res.data);
+                //         history.push({
+                //             pathname: "/result",
+                //             state: { details: restData }
+                //         });
+                //     })
+                //     .catch(err => console.log(err));
             }
             if (this.state.categories.Meetups) {
                 // params.term = "Meetups";
-                const paramsMeet = {
-                    location: this.state.city_zip,
-                    sort_by: "distance",
-                    radius: 8000,
-                    limit: 5,
-                    term: "Meetups"
-                };
+                // const paramsMeet = {
+                //     location: this.state.city_zip,
+                //     sort_by: "distance",
+                //     radius: 8000,
+                //     limit: 5,
+                //     term: "Meetups"
+                // };
                 params.term.push("Meetups");
-                API.yelpSearch(paramsMeet)
-                    .then(res => {
-                        // console.log(res);
-                        //return this.setState({ resultMeetup: res.data })
-                    })
-                    .catch(err => console.log(err));
+                // API.yelpSearch(paramsMeet)
+                //     .then(res => {
+                //         // console.log(res);
+                //         let restData = this.formatResultData(res.data);
+                //         history.push({
+                //             pathname: "/result",
+                //             state: { details: restData }
+                //         });
+                //     })
+                //     .catch(err => console.log(err));
             }
-            if (this.state.categories.Recreation) {
+            if (this.state.categories.Recreations) {
                 // params.term = "Recreation";
-                const paramsRec = {
-                    location: this.state.city_zip,
-                    sort_by: "distance",
-                    radius: 8000,
-                    limit: 5,
-                    term: "Recreation"
-                };
+                // const paramsRec = {
+                //     location: this.state.city_zip,
+                //     sort_by: "distance",
+                //     radius: 8000,
+                //     limit: 5,
+                //     term: "Recreation"
+                // };
                 params.term.push("Recreation");
-                API.yelpSearch(paramsRec)
-                    .then(res => {
-                        // console.log(res);
-                        //return this.setState({ resultRecreation: res.data })
-                    })
-                    .catch(err => console.log(err));
+                // API.yelpSearch(paramsRec)
+                //     .then(res => {
+                //         // console.log(res);
+                //         let restData = this.formatResultData(res.data);
+                //         history.push({
+                //             pathname: "/result",
+                //             state: { details: restData }
+                //         });
+                //     })
+                //     .catch(err => console.log(err));
             }
             if (this.state.categories.Restaurants) {
                 // params.term = "Restaurants";
-                const paramsRest = {
-                    location: this.state.city_zip,
-                    sort_by: "distance",
-                    radius: 8000,
-                    limit: 5,
-                    term: "Restaurants"
-                };
+                // const paramsRest = {
+                //     location: this.state.city_zip,
+                //     sort_by: "distance",
+                //     radius: 8000,
+                //     limit: 5,
+                //     term: "Restaurants"
+                // };
                 params.term.push("Restaurants");
-                API.yelpSearch(paramsRest)
-                    .then(res => {
-                        // console.log(res);
-                        //return this.setState({ resultRestaurant: res.data })
-                    })
-                    .catch(err => console.log(err));
+                // API.yelpSearch(paramsRest)
+                //     .then(res => {
+                //         // console.log(res);
+                //         let restData = this.formatResultData(res.data);
+                //         history.push({
+                //             pathname: "/result",
+                //             state: { details: restData }
+                //         });
+                //     })
+                //     .catch(err => console.log(err));
             }
+            // console.log("Beginning Consolidated terms");
+            // console.log("term length" + params.term.length);
             if(params.term.length > 0){
+                // console.log("params: " + JSON.stringify(params));
                 API.yelpSearchConsolidated(params)
                 .then(res => {
-                    return this.setState({result: res.data})
+                    // console.log("Consolidated return, setting state");
+                    // console.log("Setting STate: " + JSON.stringify(res.data));
+                    // return this.setState({result: res.data})
+                    // console.log(res);
+                    let restData = this.formatResultDataArray(res.data);
+                    history.push({
+                        pathname: "/result",
+                        state: { details: restData }
+                    });
                 })
                 .catch(err => console.log(err));
             }
