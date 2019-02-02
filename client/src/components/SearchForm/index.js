@@ -235,10 +235,10 @@ class SearchForm extends React.Component {
                 // console.log("params: " + JSON.stringify(params));
                 API.yelpSearchConsolidated(params)
                 .then(res => {
-                    console.log("Consolidated return, setting state");
+                    // console.log("Consolidated return, setting state");
                     // console.log("Setting STate: " + JSON.stringify(res.data));
                     // return this.setState({result: res.data})
-                    console.log(res);
+                    // console.log(res);
                     let restData = this.formatResultDataArray(res.data);
                     history.push({
                         pathname: "/result",

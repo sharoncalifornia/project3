@@ -57,7 +57,7 @@ module.exports = {
                 retArray.push(result[i].data);
             }
             // console.log("retArray: " + retArray);
-            console.log("returning result of consolidated search");
+            // console.log("returning result of consolidated search");
             res.status(200).json(retArray);
         })
         .catch(err => {
