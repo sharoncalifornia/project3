@@ -4,7 +4,17 @@
   /* overflow-y: scroll;  */
 	width: 100%;
 	font-size:20px;
-	font-family:'Lato', sans-serif;
+	/* font-family:'Lato', sans-serif; */
+}
+
+.SearchForm {
+	font-family: Lato-bold;
+  color: white;
+  text-shadow:
+      -1px -.5px 0 #000,
+      1px -.5px 0 #000,
+      -1px .5px 0 #000,
+      1px .5px 0 #000;
 }
 
 .search-container {
@@ -13,7 +23,13 @@
 
 .search-form{
 	color: white;
-	text-shadow: 1px 1px 1px black;
+	/* text-shadow: 1px 1px 1px black; */
+	  color: white;
+  text-shadow:
+      -1px -.5px 0 #000,
+      1px -.5px 0 #000,
+      -1px .5px 0 #000,
+      1px .5px 0 #000;
 }
 
 .col-form-label {

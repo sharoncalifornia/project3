@@ -1,7 +1,7 @@
 @media all and (min-width: 480px) {
 	.Signup {
 		padding: 60px 0;
-		font-family:'Lato', sans-serif;
+		font-family:'Lato';
 	}
   
 	.Signup form {
@@ -14,12 +14,18 @@
 		background-color: #6b092a;
 		color: white;
 	}
+<<<<<<< HEAD
+ 
+	#ErrorMsg {
+		color: red;
+=======
 	.signup-image {
 		background: 
 			url("/images/lajolla-cove.jpg");
 			background-repeat: no-repeat;
 			background-position: center;
 			background-size: cover; 	
+>>>>>>> f7eb3fb99304189049f1f82addbe2e37aaa684eb
 	}
 
   }
