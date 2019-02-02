@@ -34,10 +34,16 @@ class Result extends Component {
         this.setState({ detailsData: this.props.location.state.details });
     }
 
-    handleCheckboxChange = label => {
-        console.log("checkbox check");
-    };
-
+    handleInputChange(event) {
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+    
+        this.setState({
+          [name]: value
+        });
+      }
+    
     render() {
         if (this.props.location.state !== undefined) {
             return (
