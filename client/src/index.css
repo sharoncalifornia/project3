@@ -4,10 +4,10 @@ body {
   margin: 0;
   padding: 0;
   font-family: Lato-bold;
-  color: white;
+  color: rgb(68, 68, 68);
 }
 
-over.body {
+.label {
   margin: 0;
   padding: 0;
   font-family: Lato-bold;
