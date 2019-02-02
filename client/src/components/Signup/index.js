@@ -31,6 +31,7 @@ class Signup extends Component {
 
   render() {
     return (
+    <div class="fill signup-image">
       <div className="Login">
         <form className="dest-form">
           <div className="form-group">
@@ -63,6 +64,7 @@ class Signup extends Component {
             Sign up
           </div>
         </form>
+      </div>
       </div>
     );
   }
