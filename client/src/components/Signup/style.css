@@ -14,7 +14,13 @@
 		background-color: #6b092a;
 		color: white;
 	}
-
+	.signup-image {
+		background: 
+			url("/images/lajolla-cove.jpg");
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: cover; 	
+	}
 
   }
   
