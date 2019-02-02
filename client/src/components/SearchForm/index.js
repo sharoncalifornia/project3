@@ -41,25 +41,46 @@ class SearchForm extends React.Component {
     };
 
     formatResultData = data => {
-        console.log("here"+data);
         let resData = [];
-        for (let i =0; i<5; i++) {
+        data.businesses.forEach(function (item, i) {
             let rec = {};
-            let bus = data.businesses[i];
-            rec.name = bus.name;
-            rec.phone = bus.display_phone;
-            rec.rating = bus.rating;
-            rec.price = bus.price;
-            rec.image_url = bus.image_url;
+            rec.name = item.name;
+            rec.phone = item.display_phone;
+            rec.rating = item.rating;
+            rec.price = item.price;
+            rec.image_url = item.image_url;
             rec.address = {};
-            rec.address.street = bus.location.display_address[0];
-            rec.address.city = bus.location.city;
-            rec.address.state = bus.location.state;
-            rec.address.zipcode = bus.location.zip_code;
+            rec.address.street = item.location.display_address[0];
+            rec.address.city = item.location.city;
+            rec.address.state = item.location.state;
+            rec.address.zipcode = item.location.zip_code;
             resData.push(rec);
         }
+        );
         return resData;
     }
+
+    // formatResultData = data => {
+    //     console.log("here"+data);
+    //     let resData = [];
+    //     for (let i =0; i<5; i++) {
+    //         let rec = {};
+    //         let bus = data.businesses[i];
+    //         rec.name = bus.name;
+    //         rec.phone = bus.display_phone;
+    //         rec.rating = bus.rating;
+    //         rec.price = bus.price;
+    //         rec.image_url = bus.image_url;
+    //         console.log(bus.image_url);
+    //         rec.address = {};
+    //         rec.address.street = bus.location.display_address[0];
+    //         rec.address.city = bus.location.city;
+    //         rec.address.state = bus.location.state;
+    //         rec.address.zipcode = bus.location.zip_code;
+    //         resData.push(rec);
+    //     }
+    //     return resData;
+    // }
 
     handleFormSubmit = event => {
         const history = this.props.history;
@@ -69,96 +90,87 @@ class SearchForm extends React.Component {
 
         console.log(JSON.stringify(this.state));
         // call api, still need to validate the text fields to make sure they are not empty
-        if(this.state.city_zip){
+        if (this.state.city_zip) {
 
             //each checkmark searches for different status
             if (this.state.categories.Hotels) {
-                // params.term = "Hotel";
                 const paramsHotel = {
                     location: this.state.city_zip,
                     term: "Hotel"
                 };
                 API.yelpSearch(paramsHotel)
-                .then(res => {
-                    console.log(res);
-                    let restData = this.formatResultData(res.data);
+                    .then(res => {
+                        console.log(res);
+                        let restData = this.formatResultData(res.data);
+                        history.push({
+                            pathname: "/result",
+                            state: { details: restData }
+                        });
+                    })
+                    .catch(err => console.log(err));
 
-                    // restData.name = res.data.businesses[0].name;
-                    history.push({
-                        pathname: "/result",
-                         state: {details: restData}
-                    });
-                   // return this.setState({ resultHotel: res.data })
-                })
-                .catch(err => console.log(err));
-        
-            }  
-            if (this.state.categories.Bars){
-                // params.term = "Bars";
+            }
+            if (this.state.categories.Bars) {
                 const paramsBar = {
                     location: this.state.city_zip,
                     term: "Bars"
                 };
                 API.yelpSearch(paramsBar)
-                .then(res => {
-                    console.log(res);
-                    // navigate
-                    let restData = {};
-                    restData.name = res.data.businesses[0].name;
-                    
-                    console.log(restData.name);
-                    history.push({
-                        pathname: "/result",
-                         state: {detail: restData.name}
-                    });
-                   // return this.setState({ result: res.data })
-                })
-                .catch(err => console.log(err));
-            }  
-            if (this.state.categories.Meetups){
+                    .then(res => {
+                        console.log(res);
+                        // navigate
+                        let restData = {};
+                        restData.name = res.data.businesses[0].name;
+
+                        console.log(restData.name);
+                        history.push({
+                            pathname: "/result",
+                            state: { detail: restData.name }
+                        });
+                        // return this.setState({ result: res.data })
+                    })
+                    .catch(err => console.log(err));
+            }
+            if (this.state.categories.Meetups) {
                 // params.term = "Meetups";
                 const paramsMeet = {
                     location: this.state.city_zip,
                     term: "Meetups"
                 };
                 API.yelpSearch(paramsMeet)
-                .then(res => {
-                    // console.log(res);
-                    return this.setState({ resultMeetup: res.data })
-                })
-                .catch(err => console.log(err));
-            }  
-            if (this.state.categories.Recreation){
+                    .then(res => {
+                        // console.log(res);
+                        //return this.setState({ resultMeetup: res.data })
+                    })
+                    .catch(err => console.log(err));
+            }
+            if (this.state.categories.Recreation) {
                 // params.term = "Recreation";
                 const paramsRec = {
                     location: this.state.city_zip,
                     term: "Recreation"
                 };
                 API.yelpSearch(paramsRec)
-                .then(res => {
-                    // console.log(res);
-                    return this.setState({ resultRecreation: res.data })
-                })
-                .catch(err => console.log(err));
-            }  
-            if (this.state.categories.Restaurants){
+                    .then(res => {
+                        // console.log(res);
+                        //return this.setState({ resultRecreation: res.data })
+                    })
+                    .catch(err => console.log(err));
+            }
+            if (this.state.categories.Restaurants) {
                 // params.term = "Restaurants";
                 const paramsRest = {
                     location: this.state.city_zip,
                     term: "Restaurants"
                 };
                 API.yelpSearch(paramsRest)
-                .then(res => {
-                    // console.log(res);
-                    return this.setState({ resultRestaurant: res.data })
-                })
-                .catch(err => console.log(err));
+                    .then(res => {
+                        // console.log(res);
+                        //return this.setState({ resultRestaurant: res.data })
+                    })
+                    .catch(err => console.log(err));
             }
-
-            
         }
-        
-
     };
 
     handleCheckboxChange = changeEvent => {
@@ -172,25 +184,7 @@ class SearchForm extends React.Component {
         }));
     };
 
-    //    componentDidMount() {
-    //        console.log("componentDidMount");
-    //     this._asyncRequest = asyncLoadData().then(
-    //         externalData => {
-    //             this._asyncRequest = null;
-    //             this.setState({ externalData });
-    //         }
-    //     );
-    // }
-
-    // componentWillUnmount() {
-    //     console.log("componentWillUnmount");
-    //     if (this._asyncRequest) {
-    //         this._asyncRequest.cancel();
-    //     }
-    // }
-
     render() {
-       // console.log(this.props.location.state.detail);
         return (
             <div className="container-fluid col-md-3 mt-5">
                 <form className="dest-form">

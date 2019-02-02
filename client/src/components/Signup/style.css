@@ -1,7 +1,7 @@
 @media all and (min-width: 480px) {
 	.Signup {
 		padding: 60px 0;
-		font-family:'Lato', sans-serif;
+		font-family:'Lato';
 	}
   
 	.Signup form {

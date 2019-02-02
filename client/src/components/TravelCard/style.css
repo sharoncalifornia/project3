@@ -1,5 +1,19 @@
-.card-img {
-	width: 200px;
-	height: 200px;
+
+.card {
+	margin: 10px; 
+	font-size: 15px;
+	width: 330px;
+	height:400px;
+	font-family: 'Lato';
+} 
+
+.card-title {
+	font-weight: bold;
 }
+
+.dollar-font {
+	font-weight: bold;
+}
+
+
   
