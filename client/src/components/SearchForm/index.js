@@ -90,7 +90,6 @@ class SearchForm extends React.Component {
 
         console.log(JSON.stringify(this.state));
         // call api, still need to validate the text fields to make sure they are not empty
-<<<<<<< HEAD
         if(this.state.city_zip){
             const params = {
                 location: this.state.city_zip,
@@ -99,9 +98,6 @@ class SearchForm extends React.Component {
                 limit: 5,
                 term: []
             };
-=======
-        if (this.state.city_zip) {
->>>>>>> 403a3b5f9ed732b99a2778830a6c32bd98568207
 
             //each checkmark searches for different status
             if (this.state.categories.Hotels) {
@@ -201,7 +197,6 @@ class SearchForm extends React.Component {
                     })
                     .catch(err => console.log(err));
             }
-<<<<<<< HEAD
             if(params.term.length > 0){
                 API.yelpSearchConsolidated(params)
                 .then(res => {
@@ -211,8 +206,6 @@ class SearchForm extends React.Component {
             }
 
             
-=======
->>>>>>> 403a3b5f9ed732b99a2778830a6c32bd98568207
         }
     };
 

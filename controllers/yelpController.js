@@ -51,8 +51,12 @@ console.log(requestParams);
 
         //result array has all of our promises
         Promise.all(resultArray)
-        .then(({data}) => {
-            res.status(200).json(data);
+        .then((result) => {
+            const retArray = [];
+            for (var i = 0; i < result.length; i++){
+                retArray.push(result[i].data);
+            }
+            res.status(200).json(retArray);
         })
         .catch(err => {
             res.status(422).json(err)
