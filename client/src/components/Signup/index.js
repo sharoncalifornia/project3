@@ -37,7 +37,9 @@ class Signup extends Component {
         console.log(member)
         this.props.history.push("/");
       }).catch((error) => {
-        console.log(error.response.data);
+        this.setState({
+          errorMsg: "User is already exist, please login"
+        })
       })
     }
     else {
