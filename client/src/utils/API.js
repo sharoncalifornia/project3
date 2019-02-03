@@ -19,16 +19,18 @@ export default {
     },
 
     signup: function (data) {
-        console.log("data", data)
-        console.log("this was called")
         return axios.post("/api/user/register", data)
             .then(response => response.data);
     },
 
     login: function(data) {
-        console.log("call login with data: ", data);
-        return axios.get("/api/user/login", data)
-            .then(response => response.data);
+        return axios.post("/api/user/login", data)
+            .then(response => {
+                console.log(response.data);
+            })
+            .catch (err => {
+                console.log("login failed: "+err)
+            })
     },
 
     /**
