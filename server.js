@@ -5,11 +5,16 @@ const routes = require("./routes");
 const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
+app.use(express.json());
 
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
+  app.use(express.static("./client/build"));
 }
 
 // Add routes, both API and view
@@ -22,9 +27,6 @@ app.use(routes);
 // });
 
 // Connect to the Mongo DB
-var databaseURI = "mongodb://localhost/travelpreferences";
-var MONGODB_URI = process.env.MONGODB_URI || databaseURI;
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 app.listen(PORT, function() {
   console.log(`🌎 ==> API server now on port ${PORT}!`);

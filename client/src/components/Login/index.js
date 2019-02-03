@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./style.css";
+import API from "../../utils/API";
 
 class Login extends Component {
   constructor(props) {
@@ -26,6 +27,10 @@ class Login extends Component {
     console.log("handle login submit");
     if (this.validateForm()) {
       console.log("call login API");
+      API.login({
+        "email": this.state.email,
+        "password": this.state.password
+      })
     }
     else {
       this.setState({ errorMsg: "Password not match" });

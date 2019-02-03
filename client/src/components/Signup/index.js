@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./style.css";
+import API from "../../utils/API";
 
 class Signup extends Component {
   constructor(props) {
@@ -29,6 +30,15 @@ class Signup extends Component {
     console.log("handle signup submit");
     if (this.validateForm()) {
       console.log("call signup API");
+      return API.signup({
+        "email": this.state.email,
+        "password": this.state.password
+      }).then((member)=>{
+        console.log(member)
+        this.props.history.push("/");
+      }).catch ((error) => {
+        console.log(error.response.data);
+      })
     }
     else {
       this.setState({ errorMsg: "Password not match" });
@@ -38,7 +48,7 @@ class Signup extends Component {
 
   render() {
     return (
-    <div class="fill signup-image">
+    <div className="fill signup-image">
       <div className="Login">
         <form className="dest-form">
           <div className="form-group">

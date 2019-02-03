@@ -17,6 +17,20 @@ export default {
     saveTravels: function (data) {
         return axios.post("/api/travels/", data);
     },
+
+    signup: function (data) {
+        console.log("data", data)
+        console.log("this was called")
+        return axios.post("/api/user/register", data)
+            .then(response => response.data);
+    },
+
+    login: function(data) {
+        console.log("call login with data: ", data);
+        return axios.get("/api/user/login", data)
+            .then(response => response.data);
+    },
+
     /**
      * takes new properties
      * city_zip and nearby
@@ -27,11 +41,11 @@ export default {
             .then(results => results)
     },
 
-    yelpSearch: function(params) {
+    yelpSearch: function (params) {
         // var term = params.term;
         // var location = params.city_zip;
-        return axios.get("/api/yelp/Search", {params})
-          .then(results => results);
-      }
+        return axios.get("/api/yelp/Search", { params })
+            .then(results => results);
+    }
 };
 
