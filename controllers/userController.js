@@ -1,32 +1,15 @@
 const axios = require("axios");
-const Member = require("../models/member")
-module.exports = {
+const Member = require("../models/member");
+const bcrypt = require("bcryptjs");
 
-    // userExist: (email) => {
-        // function myuserExist(email) {
-        myuserExist: function(email) {
-        let status = false;
-        console.log("userExist");
-        Member.findOne(email, function (err, user) {
-            if (err) {
-                status = false
-            }
-            else {
-                if (!user) {  // not exist
-                    status = fase;
-                }
-                else {
-                    status = true;
-                }
-            }
-        })
-        return status;
-        //console.log(userExist);
-    },
+let saltRounds = 10;
+module.exports = {
 
     registerUser: function (req, res) {
         // need to find user first
-        Member.findOne(req.body, function (err, user) {
+        console.log("register user");
+        Member.findOne({email: req.body.email}, function (err, user) {
+            console.log("inside Onefind");
             if (err) {
                 console.log("error");
                 return res.status(500).json({
@@ -35,20 +18,29 @@ module.exports = {
                 })
             }
             else {
-                if (!user) {
-                    console.log("user not found")
-                    Member.create(req.body, (err, newMember) => {
-                        if (err) {
-                            console.log("error");
-                            return res.status(500).json({
-                                message: "register error",
-                                err: err
+                console.log("not found, can register: user: "+JSON.stringify(user));
+                if (user === null) {
+                    console.log("user not found");
+                    bcrypt.genSalt(saltRounds, function(err, salt) {
+                        bcrypt.hash(req.body.password, salt, function(err, hash) {
+                            console.log(hash);
+                            req.body.password = hash;
+                            console.log("user: "+req.body.email+" hash: "+req.body.password);
+                            Member.create(req.body, (err, newMember) => {
+                                if (err) {
+                                    console.log("error");
+                                    return res.status(500).json({
+                                        message: "register error",
+                                        err: err
+                                    })
+                                }
+                                else {
+                                    console.log("newuser: "+newMember);
+                                    console.log("register new member, encrypt password");
+                                    return res.status(200).json(newMember)
+                                }
                             })
-                        }
-                        else {
-                            console.log("register new member");
-                            return res.status(200).json(newMember)
-                        }
+                        })
                     })
                 }
                 else {
@@ -57,50 +49,48 @@ module.exports = {
                         message: "user is already in the system, please login",
                         err: err
                     })
-
                 }
             }
         })
-        // if (this.userExist(req.body.email)) {
-        //     return res.status(404).json({
-        //         message: "user exist",
-        //         err: err
-        //     })
-        // }
-        // else {
-        //     return Member.create(req.body, (err, newMember) => {
-        //         if (err) {
-        //             console.log("error");
-        //             return res.status(500).json({
-        //                 message: "register error",
-        //                 err: err
-        //             })
-        //         }
-        //         else {
-        //             console.log("register new member");
-        //             res.status(200).json(newMember)
-        //         }
-        //     });
-        // }
     },
 
-    loginUser: function (req, res) {
-        Member.findOne(req.body, function (err, user) {
+     loginUser: function (req, res) {
+        console.log("call login: req.body: "+req.body.email);
+
+        return Member.findOne({email: req.body.email}, function (err, user) {
             if (err) {
+                console.log("error");
                 return res.status(500).json({
                     message: "login error",
                     err: err
                 })
             }
             else {
-                if (!user) {
+                console.log("user:"+user)
+                if (user === null) {
+                    console.log("not found");
                     return res.status(404).json({
                         message: "user not found",
                         err: err
                     })
                 }
                 else {
-                    res.status(200).json(user);
+                    console.log("find it here");
+                    console.log("req.body.email: "+req.body.email);
+                    console.log("req.body.password: "+req.body.password);
+                    
+                    bcrypt.compare(req.body.password, user.password, function(err, response) {
+                        if (response) {
+                            console.log("good: "+user);
+                            return res.status(200).json(user);
+                        }
+                        else {
+                            return res.status(404).json({
+                                message: "password not match",
+                                err: err
+                            })
+                        }
+                    })
                 }
             }
         })

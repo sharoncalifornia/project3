@@ -20,17 +20,12 @@ export default {
 
     signup: function (data) {
         return axios.post("/api/user/register", data)
-            .then(response => response.data);
+            .then(response => response);
     },
 
     login: function(data) {
         return axios.post("/api/user/login", data)
-            .then(response => {
-                console.log(response.data);
-            })
-            .catch (err => {
-                console.log("login failed: "+err)
-            })
+        .then (result => result);
     },
 
     /**

@@ -26,15 +26,18 @@ class Login extends Component {
   handleLogin = event => {
     event.preventDefault();
     if (this.validateForm()) {
+      console.log("calling login");
       API.login({
         "email": this.state.email,
         "password": this.state.password
       })
-        .then(res => {
+        .then((result) => {
           // need to do something
-          console.log("login success: " + res.status);
+          
+          console.log("login success: " + result);
         })
-        .catch(err => {
+        .catch((err) => {
+          console.log("err:"+err);
           this.setState({ errorMsg: "User not found, please signup" }
           )
         })
