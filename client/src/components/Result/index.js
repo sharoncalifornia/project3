@@ -34,10 +34,16 @@ class Result extends Component {
         this.setState({ detailsData: this.props.location.state.details });
     }
 
-    handleCheckboxChange = label => {
-        console.log("checkbox check");
-    };
-
+    handleInputChange(event) {
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+    
+        this.setState({
+          [name]: value
+        });
+      }
+    
     render() {
         if (this.props.location.state !== undefined) {
             return (
@@ -48,12 +54,12 @@ class Result extends Component {
                             <FormBtn name="save" onClick={this.handleFormSubmitSave}>Save to My Account</FormBtn>
                         </div>
                     </div>
-                    <div id="content">
+                    <div className ="container" id="content">
                         <div className="row-div col-md-12">
-                            {this.props.location.state.details.map(detail => (
+                            {this.props.location.state.details ? this.props.location.state.details.map(detail => (
                                 <TravelCard rec={detail} onCheckboxChange={this.handleCheckboxChange} key={detail.phone}
                                 />
-                            ))}
+                            )) : <p>No Results Found</p>}
                         </div>
                     </div>
                 </div>

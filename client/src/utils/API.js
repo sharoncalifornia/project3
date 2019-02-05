@@ -32,6 +32,16 @@ export default {
         // var location = params.city_zip;
         return axios.get("/api/yelp/Search", {params})
           .then(results => results);
-      }
+    },
+
+    yelpSearchConsolidated: function(params) {
+      // console.log("running consolidated search");
+      return axios.get("/api/yelp/SearchConsolidated", {params})
+      .then(result => {
+        // console.log("API passing result: " + JSON.stringify(result));
+        return result
+      });
+    }
+
 };
 
