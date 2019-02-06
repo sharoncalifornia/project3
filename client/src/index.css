@@ -18,3 +18,16 @@ body {
   font-family: Lato-bold;
   color: #000;
 }
+
+.main {
+  background: 
+	url("/images/coronado-bridge.jpg");
+	background-repeat: no-repeat;
+	background-position: center;
+    	background-size: cover; 	
+    	height: 1000px;  
+    	max-height: 1100px;  
+    	/* overflow-y: scroll;  */
+    	width: 100%;
+    /* font-family:'Lato', sans-serif; */
+}
