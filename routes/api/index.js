@@ -8,4 +8,6 @@ router.use("/travels", travelRoutes);
 router.use("/yelp", yelpRoutes);
 router.use("/user", userRoutes);
 
+// Add new routes here
+
 module.exports = router;
