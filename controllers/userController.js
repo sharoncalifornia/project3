@@ -51,7 +51,7 @@ module.exports = {
 
      loginUser: function (req, res) {
 
-        return Member.findOne({email: req.body.email}, function (err, user) {
+        Member.findOne({email: req.body.email}, function (err, user) {
             if (err) {
                 console.log("error");
                 return res.status(500).json({
