@@ -8,30 +8,25 @@ module.exports = {
     registerUser: function (req, res) {
 
         Member.findOne({email: req.body.email}, function (err, user) {
-            if (err) {;
+            if (err) {
                 return res.status(500).json({
                     message: "login error",
                     err: err
                 })
             }
             else {
-                console.log("not found, can register: user: "+JSON.stringify(user));
                 if (user === null) {
                     bcrypt.genSalt(saltRounds, function(err, salt) {
                         bcrypt.hash(req.body.password, salt, function(err, hash) {
                             req.body.password = hash;
-                            console.log("user: "+req.body.email+" hash: "+req.body.password);
                             Member.create(req.body, (err, newMember) => {
                                 if (err) {
-                                    console.log("error");
                                     return res.status(500).json({
                                         message: "register error",
                                         err: err
                                     })
                                 }
                                 else {
-                                    console.log("newuser: "+newMember);
-                                    console.log("register new member, encrypt password");
                                     return res.status(200).json(newMember)
                                 }
                             })
@@ -39,7 +34,6 @@ module.exports = {
                     })
                 }
                 else {
-                    console.log("found user");
                     return res.status(404).json({
                         message: "user is already in the system, please login",
                         err: err
@@ -53,14 +47,12 @@ module.exports = {
 
         Member.findOne({email: req.body.email}, function (err, user) {
             if (err) {
-                console.log("error");
                 return res.status(500).json({
                     message: "login error",
                     err: err
                 })
             }
             else {
-                console.log("user:"+user)
                 if (user === null) {
                     return res.status(404).json({
                         message: "user not found",
