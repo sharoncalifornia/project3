@@ -1,12 +1,21 @@
 .row-div {
-	height: 900px;  
-	max-height: 900px;  
-  overflow-y: scroll;  
+	height: 1000px;  
+	max-height: 1100px;   
+  overflow-y: scroll;   
 	width: 100%;
+	overflow: hidden;
+}
+
+html {
+  overflow:   scroll;
+}
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
 }
 
 #content {
-	height:100vh;	  
+	height:100vh;	
 	font-family: 'Lato';
 }
 

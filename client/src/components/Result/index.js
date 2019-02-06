@@ -62,7 +62,7 @@ class Result extends Component {
                     <div className ="container" id="content">
                         <div className="row-div col-md-12">
                             {this.props.location.state.details ? this.props.location.state.details.map(detail => (
-                                <TravelCard rec={detail} onChange={this.handleCheckboxChange} key={detail.phone}
+                                <TravelCard rec={detail} onChange={this.handleInputChange} key={detail.phone}
                                 />
                             )) : <p>No Results Found</p>}
                         </div>

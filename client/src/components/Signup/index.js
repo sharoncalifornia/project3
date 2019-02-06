@@ -34,7 +34,7 @@ class Signup extends Component {
         "email": this.state.email,
         "password": this.state.password
       }).then((member) => {
-        console.log(member)
+        console.log("signup success: "+member.data.email);
         this.props.history.push("/");
       }).catch((error) => {
         this.setState({

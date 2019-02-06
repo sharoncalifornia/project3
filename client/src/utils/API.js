@@ -19,13 +19,11 @@ export default {
     },
 
     signup: function (data) {
-        return axios.post("/api/user/register", data)
-            .then(response => response);
+        return axios.post("/api/user/register", data);
     },
 
     login: function(data) {
-        return axios.post("/api/user/login", data)
-        .then (result => result);
+        return axios.post("/api/user/login", data);
     },
 
     /**
