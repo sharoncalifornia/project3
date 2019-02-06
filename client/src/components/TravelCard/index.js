@@ -34,7 +34,6 @@ const TravelCard = ({ rec, onCheckboxChange }) => (
             <div className="col-md-8">
               <Checkbox
                 label="Save"
-                isSelected={false}
                 onCheckboxChange={onCheckboxChange}
                 key={rec.phone}
                 name={rec.phone}
