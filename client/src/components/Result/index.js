@@ -12,9 +12,9 @@ import API from "../../utils/API";
 
 class Result extends Component {
 
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
 
     state = {
         detailsData: [],
