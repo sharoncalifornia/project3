@@ -5,7 +5,7 @@ import "./style.css";
 function Nav() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark">
-      <a className="navbar-brand" href="/"><img id="logo" alt="Logo" src="/images/logo.svg" width="65" height="65"></img> <span>Destination Expert</span></a>
+      <a className="navbar-brand" href="/"><img id="logo" alt="Logo" src={process.env.PUBLIC_URL +"/images/logo.svg"} width="65" height="65"></img> <span>Destination Expert</span></a>
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav">
           <li className="nav-item ml-2 mr-3">
