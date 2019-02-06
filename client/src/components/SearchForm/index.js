@@ -5,7 +5,7 @@ import Checkbox from "../../components/Checkbox";
 import API from "../../utils/API";
 import { withRouter } from 'react-router-dom'
 
-const OPTIONS = ["Restaurants", "Hotels", "Recreations", "Bars", "Meetups"];
+const OPTIONS = ["Restaurants", "Hotels", "Recreation", "Bars", "Meetups"];
 
 class SearchForm extends React.Component {
 
@@ -187,7 +187,7 @@ class SearchForm extends React.Component {
                 //     })
                 //     .catch(err => console.log(err));
             }
-            if (this.state.categories.Recreations) {
+            if (this.state.categories.Recreation) {
                 // params.term = "Recreation";
                 // const paramsRec = {
                 //     location: this.state.city_zip,

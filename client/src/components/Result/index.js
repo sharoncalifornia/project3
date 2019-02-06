@@ -63,51 +63,38 @@ class Result extends Component {
         });
     }
 
-    handleCheckboxChange = label => {
-        console.log("checkbox check");
-    };
-
+    handleInputChange(event) {
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+    
+        this.setState({
+          [name]: value
+        });
+      }
+    
     render() {
-        if (this.props.location.state) {
-            return ( <
-                div className = "fill result-image" >
-                <
-                div className = "clearfix" >
-                <
-                div id = "action-div" >
-                <
-                FormBtn name = "search"
-                onClick = {
-                    this.handleFormSubmitSearch
-                } > Search again < /FormBtn> <
-                FormBtn name = "save"
-                onClick = {
-                    this.handleFormSubmitSave
-                } > Save to My Account < /FormBtn> <
-                /div> <
-                /div> <
-                div id = "content" >
-                <
-                div className = "row-div col-md-12" > {
-                    this.props.location.state.details.map(detail => ( <
-                        TravelCard rec = {
-                            detail
-                        }
-                        onCheckboxChange = {
-                            this.handleCheckboxChange
-                        }
-                        key = {
-                            detail.phone
-                        }
-                        />
-                    ))
-                } <
-                /div> <
-                /div> <
-                /div>
+        if (this.props.location.state !== undefined) {
+            return (
+                <div className="fill result-image">
+                    <div className="clearfix">
+                        <div id="action-div">
+                            <FormBtn name="search" onClick={this.handleFormSubmitSearch}>Search again</FormBtn>
+                            <FormBtn name="save" onClick={this.handleFormSubmitSave}>Save to My Account</FormBtn>
+                        </div>
+                    </div>
+                    <div className ="container" id="content">
+                        <div className="row-div col-md-12">
+                            {this.props.location.state.details ? this.props.location.state.details.map(detail => (
+                                <TravelCard rec={detail} onCheckboxChange={this.handleCheckboxChange} key={detail.phone}
+                                />
+                            )) : <p>No Results Found</p>}
+                        </div>
+                    </div>
+                </div>
             );
         } else
-            return <h2 > Page Load Error < /h2>
+            return <h2> Page Load Error </h2>
     }
 }
 
