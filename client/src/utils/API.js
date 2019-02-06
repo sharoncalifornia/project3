@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default {
-
+/*
     getTravels: function () {
         return axios.get("/api/travels");
     },
@@ -12,11 +12,17 @@ export default {
 
     deleteTravel: function (id) {
         return axios.delete("/api/travels/" + id);
+    },*/
+
+    saveTravelsLocation: function (data) {
+        console.log("inside API.js  sending request: ",data);
+        return axios.post("/api/travels/location", data);
+    },
+    saveTravelsPreference: function (data) {
+        return axios.post("/api/travels/Preference", data);
     },
 
-    saveTravels: function (data) {
-        return axios.post("/api/travels/", data);
-    },
+
     /**
      * takes new properties
      * city_zip and nearby

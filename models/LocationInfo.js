@@ -5,7 +5,9 @@ const Schema = mongoose.Schema;
 const LocationInfoSchema = new Schema( {
 	name: {type: String, required: true},
 	category: String,
-	description: String,  // place holder
+	description: String, 
+	rating: String, 
+	price: String,// place holder
 	address: {
 		street: {type: String},
 		city: {type: String},
@@ -13,7 +15,7 @@ const LocationInfoSchema = new Schema( {
 		zipcode: {type: String}	
 	},
 	phone: String,
-	url: String
+	image_url: String
 });
 
 const LocationInfo = mongoose.model("LocationInfo", LocationInfoSchema);

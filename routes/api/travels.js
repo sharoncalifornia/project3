@@ -1,10 +1,10 @@
 const router = require("express").Router();
 const travelsController = require("../../controllers/travelsController");
 const membersPrefereneController = require("../../controllers/membersPreferenceController");
-router.route("/save/locations")
+router.route("/location")
   .post(travelsController.create);
 
-  router.route("/save/preferences")
+router.route("/preference")
   .post(membersPrefereneController.create);
 
 // Matches with "/api/travels"
