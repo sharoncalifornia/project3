@@ -22,6 +22,13 @@ export default {
         return axios.post("/api/travels/Preference", data);
     },
 
+    signup: function (data) {
+        return axios.post("/api/user/register", data);
+    },
+
+    login: function(data) {
+        return axios.post("/api/user/login", data);
+    },
 
     /**
      * takes new properties
@@ -33,7 +40,7 @@ export default {
             .then(results => results)
     },
 
-    yelpSearch: function(params) {
+    yelpSearch: function (params) {
         // var term = params.term;
         // var location = params.city_zip;
         return axios.get("/api/yelp/Search", {params})
