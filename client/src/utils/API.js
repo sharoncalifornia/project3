@@ -17,6 +17,15 @@ export default {
     saveTravels: function (data) {
         return axios.post("/api/travels/", data);
     },
+
+    signup: function (data) {
+        return axios.post("/api/user/register", data);
+    },
+
+    login: function(data) {
+        return axios.post("/api/user/login", data);
+    },
+
     /**
      * takes new properties
      * city_zip and nearby
@@ -27,7 +36,7 @@ export default {
             .then(results => results)
     },
 
-    yelpSearch: function(params) {
+    yelpSearch: function (params) {
         // var term = params.term;
         // var location = params.city_zip;
         return axios.get("/api/yelp/Search", {params})

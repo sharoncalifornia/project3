@@ -13,7 +13,8 @@ class Result extends Component {
 
     state = {
         detailsData: [],
-        saveStatuses: []
+        saveStatuses: [],
+        checked: false
     }
 
     handleFormSubmitSearch = event => {
@@ -33,12 +34,12 @@ class Result extends Component {
     componentDidMount() {
         this.setState({ detailsData: this.props.location.state.details });
     }
-
-    handleInputChange(event) {
+    
+    onCheckboxChange(event) {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
-    
+    console.log("checkmark click");
         this.setState({
           [name]: value
         });
@@ -57,7 +58,7 @@ class Result extends Component {
                     <div className ="container" id="content">
                         <div className="row-div col-md-12">
                             {this.props.location.state.details ? this.props.location.state.details.map(detail => (
-                                <TravelCard rec={detail} onCheckboxChange={this.handleCheckboxChange} key={detail.phone}
+                                <TravelCard rec={detail} onCheckboxChange={this.onCheckboxChange} key={detail.phone}
                                 />
                             )) : <p>No Results Found</p>}
                         </div>
