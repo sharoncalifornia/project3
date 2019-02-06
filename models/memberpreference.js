@@ -1,11 +1,23 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-var Preference = require("./preference.js")
+//var Preference = require("./preference.js")
 
-const memberpreferenceSchema = new Schema( {
-	member: String,  
-	prefs: Preference
+const MemberPreferenceSchema = new Schema( {
+	member: {
+		email: {type: String, require: true},
+		passwd: {type: String, required: true}
+	},  
+	prefs: {
+		hotel_pref: {type: String},
+		activity_pref: {type: String},
+		restaurant_pref: {type: String}
+
+	},
+	id:{
+		type: Schema.Types.ObjectId	
+	}
+
 });
 
-const Member = mongoose.model("MemberPreference", memberpreferenceSchema);
+const MemberPreference = mongoose.model("MemberPreference", MemberPreferenceSchema);
 module.exports = MemberPreference;
