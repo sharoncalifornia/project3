@@ -6,7 +6,7 @@ import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn } from "../../components/Form";
 
-class Books extends Component {
+class Preferences extends Component {
   // Setting our component's initial state
   state = {
     preferences:[],
