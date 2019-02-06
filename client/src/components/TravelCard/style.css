@@ -1,6 +1,7 @@
 
 .card {
 	margin: 5px; 
+	margin-bottom: 10px;
 	font-size: 15px;
 	width: 330px;
 	height:410px;
@@ -16,6 +17,7 @@
 .dollar-font {
 	font-weight: bold;
 }
+
 
 
   
