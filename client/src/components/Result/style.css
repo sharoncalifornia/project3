@@ -21,7 +21,7 @@ html {
 
 .main {
   background: 
-		url("./images/coronado-bridge.jpg");
+		url("../../../public/images/coronado-bridge.jpg");
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: cover; 	
