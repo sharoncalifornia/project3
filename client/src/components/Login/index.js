@@ -35,7 +35,7 @@ class Login extends Component {
 
   render() {
     return (
-      <div class="fill login-image">
+      <div className="fill login-image">
       <div className="Login">
         <form className="dest-form">
           <div className="form-group">
