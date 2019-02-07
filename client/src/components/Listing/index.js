@@ -18,7 +18,7 @@ class Listing extends Component {
 
     state = {
         detailsData: [],
-
+        email: ""
     }
 
     handleFormSubmitSearch = event => {
@@ -80,7 +80,47 @@ class Listing extends Component {
     }
     
     render() {
-        return <h2>My Listing</h2>
+        let email="";
+        if (this.props.history.location.state) {
+            email = this.props.history.location.state.email;
+            console.log("email: "+ email);
+            this.state.email = email;
+        }
+        if (email === "")
+        return (
+            <h2>no Listing</h2>)
+        else
+            return (
+            <h2>show listing</h2>
+            )
+        //     return (
+        //     <div className="container-fluid col-md-3 mt-5">
+        //     <form className="dest-form">
+        //         <div className="form-group row">
+        //             <label htmlFor="destination" className="col-form-label">Destination</label>
+        //             <input className="form-control" name="city_zip" placeholder="City or Zipcode"
+        //                 value={this.state.city_zip}
+        //                 onChange={this.handleInputChange} required />
+        //         </div>
+
+        //         <div className="form-group row">
+        //             <label htmlFor="nearby" className="col-form-label">Beach,&nbsp;Mountain,&nbsp;By the airport</label>
+        //             <input className="form-control" name="nearby" placeholder="General preferences"
+        //                 value={this.state.nearby}
+        //                 onChange={this.handleInputChange} required />
+        //         </div>
+
+        //         <div className="form-group row">
+        //             <label htmlFor="find" className="col-form-label my-0">Find:</label>
+        //             <div className="col-sm-12 ml-5">
+        //                 {this.createCheckboxes()}
+        //                 <FormBtn onClick={this.handleFormSubmit}>Search</FormBtn>
+        //             </div>
+        //         </div>
+        //     </form >
+        // </div >
+        //     );
+    //-----
         // if (this.props.location.state != undefined) {
         //     return (
         //         <div className="fill result-image">
