@@ -40,7 +40,7 @@ class TravelCard extends React.Component {
 
   render() {
     const {
-      rec
+      rec, 
     } = this.props;
     return (
       <div className="card col-md-4">
@@ -70,16 +70,18 @@ class TravelCard extends React.Component {
               <div className="row justify-content-end">
                 <div className="col-md-8">{rec.address.city}, {rec.address.zipcode}</div>
               </div>
+              {/* if (this.props.flag === 1) { */}
               <div className="row">
                 <div className="col-md-8">
                   <Checkbox
-                    label="Save"
+                    label="Save to my account"
                     onCheckboxChange={this.myCheckboxChange}
                     key={rec.phone}
                     name={rec.phone}
                   />
                 </div>
               </div>
+              // }  
             </div>
           </div>
         </div>
