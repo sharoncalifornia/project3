@@ -75,7 +75,7 @@ class Result extends Component {
       }
     
     render() {
-        if (this.props.location.state !== undefined) {
+        if (this.props.location.state != undefined) {
             return (
                 <div className="fill result-image">
                     <div className="clearfix">
@@ -87,7 +87,7 @@ class Result extends Component {
                     <div className ="container" id="content">
                         <div className="row-div col-md-12">
                             {this.props.location.state.details ? this.props.location.state.details.map(detail => (
-                                <TravelCard rec={detail} onCheckboxChange={this.onCheckboxChange} key={detail.phone}
+                                <TravelCard rec={detail}  key={detail.phone}
                                 />
                             )) : <p>No Results Found</p>}
                         </div>

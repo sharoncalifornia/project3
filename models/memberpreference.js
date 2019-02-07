@@ -8,9 +8,10 @@ const MemberPreferenceSchema = new Schema( {
 		passwd: {type: String, required: true}
 	},  
 	prefs: {
-		hotel_pref: {type: String},
-		activity_pref: {type: String},
-		restaurant_pref: {type: String}
+		// hotel_pref: {type: String},
+		// activity_pref: {type: String},
+		// restaurant_pref: {type: String},
+	    all_pref: [Number]
 
 	},
 	id:{
