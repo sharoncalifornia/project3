@@ -15,7 +15,7 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 // Serve up static assets (usually on heroku)
-console.log("process.env.NODE_ENV ", process.env.NODE_ENV);
+// console.log("process.env.NODE_ENV ", process.env.NODE_ENV);
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
