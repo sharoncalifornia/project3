@@ -83,6 +83,7 @@ class Listing extends Component {
                     </div>
                     <div className="container" id="content">
                         <div className="row-div col-md-12">
+                            <div className="col-md-2"></div>
                             {this.state.detailsData ? this.state.detailsData.map(detail => (
                                 <TravelCard rec={detail} key={detail.phone}
                                 />
