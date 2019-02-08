@@ -88,8 +88,9 @@ class Result extends Component {
                             <FormBtn name="save" onClick={this.handleFormSubmitSave}>Save to My Account</FormBtn>
                         </div>
                     </div>
-                    <div className ="container" id="content">
+                    <div className ="container-fluid" id="content">
                         <div className="row-div col-md-12">
+                            <div className="col-md-2"></div>
                             {this.props.location.state.details ? this.props.location.state.details.map(detail => (
                                 <TravelCard rec={detail} key={detail.phone}
                                 />
