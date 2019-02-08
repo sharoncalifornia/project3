@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 
 const MemberPreferenceSchema = new Schema({
 	email: {
-		type: String, required: true
+		type: String,
+		required: true
 	},
 	prefs: [
 		{

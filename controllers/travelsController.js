@@ -15,7 +15,6 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
-    console.log("inside  travel controller  ",req.body);
     db.LocationInfo
       .create(req.body)
       .then(dbModel => {
@@ -30,7 +29,6 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   remove: function(req, res) {
-    console.log("delete params", req.params)
     db.LocationInfo
       .findById({ _id: req.params.id })
       .then(dbModel => dbModel.remove())

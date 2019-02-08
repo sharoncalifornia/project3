@@ -2,5 +2,6 @@
 
 module.exports = {
     MemberPreference: require("./MemberPreference"),
-    LocationInfo: require("./LocationInfo")
+    LocationInfo: require("./LocationInfo"),
+    Member: require('./member')
   };

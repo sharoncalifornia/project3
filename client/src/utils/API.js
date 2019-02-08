@@ -57,6 +57,14 @@ export default {
         // console.log("API passing result: " + JSON.stringify(result));
         return result
       });
+    },
+
+    createMemberPreference: function(params) {
+        return axios.get("/api/memberpreference/create", {params})
+        .then(result => {
+            // console.log("API passing result: " + JSON.stringify(result));
+            return result
+          });
     }
 
 };
