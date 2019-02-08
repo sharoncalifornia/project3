@@ -37,7 +37,6 @@ class Listing extends Component {
 
     getSaveListing = () => {
         let rec = {};
-        let myArray = []
         rec.name = "UCSD";
         rec.phone = "(858) 452 - 9393";
         rec.rating = "4";
@@ -53,6 +52,11 @@ class Listing extends Component {
         this.setState({
             detailsData: details,
         })
+        const params = {
+            email: "aaa"
+        };
+console.log("calling API getMyListing ", params);
+        API.getListing(params);
     }
 
     componentDidMount() {

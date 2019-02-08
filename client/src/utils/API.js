@@ -65,6 +65,14 @@ export default {
             // console.log("API passing result: " + JSON.stringify(result));
             return result
           });
+    },
+
+    getListing: function(params) {
+        console.log("inside API getListing", params);
+        return axios.get("/api/travels/preference/member", {params})
+        .then(result => {
+            console.log("resuslt: "+result);
+        });
     }
 
 };

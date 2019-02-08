@@ -7,6 +7,9 @@ router.route("/location")
 router.route("/preference")
   .post(membersPrefereneController.create);
 
+router.route("/preference/member")
+  .get(membersPrefereneController.getPreferences);
+
 router.route("/location/:id")
   .delete(travelsController.remove);
 
