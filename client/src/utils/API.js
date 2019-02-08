@@ -18,6 +18,18 @@ export default {
         console.log("inside API.js  sending request: ",data);
         return axios.post("/api/travels/location", data);
     },
+
+    updateTravelsLocation: function (id, data) {
+        
+        console.log("inside API.js  sending request: ",data);
+        return axios.post(`/api/travels/updatelocation/${id}`, data);
+    }, 
+    updateTravelsPreference: function (id, data) {
+
+        console.log("inside API.js sending request: ",data);
+        return axios.post(`/api/travels/updatelocation/${id}`,data);
+
+    },   
     saveTravelsPreference: function (data) {
         return axios.post("/api/travels/Preference", data);
     },

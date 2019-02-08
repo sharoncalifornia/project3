@@ -1,4 +1,6 @@
 const db = require("../models");
+const axios = require("axios");
+//const MemberPrefernce = require("../models/memberpreference");
 
 // Defining methods for the booksController
 module.exports = {
@@ -16,6 +18,7 @@ module.exports = {
   },
   create: function(req, res) {
     console.log("inside  travel controller  ",req.body);
+    console.log("inside  travel controller  ",req.body.address);
     db.LocationInfo
       .create(req.body)
       .then(dbModel => res.json(dbModel))
@@ -33,5 +36,5 @@ module.exports = {
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
-  }
+  }, 
 };

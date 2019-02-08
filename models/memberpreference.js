@@ -7,16 +7,11 @@ const MemberPreferenceSchema = new Schema( {
 		email: {type: String, require: true},
 		passwd: {type: String, required: true}
 	},  
-	prefs: {
-		hotel_pref: {type: String},
-		activity_pref: {type: String},
-		restaurant_pref: {type: String}
-
-	},
-	id:{
-		type: Schema.Types.ObjectId	
+	all_prefs: [ {
+		type: Schema.Types.ObjectId,
+		ref: "LocationInfo"	
 	}
-
+    ]
 });
 
 const MemberPreference = mongoose.model("MemberPreference", MemberPreferenceSchema);

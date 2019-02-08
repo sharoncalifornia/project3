@@ -41,10 +41,10 @@ class Result extends Component {
                 rating: this.state.detailsData[0].rating,
                 price: this.state.detailsData[0].price,
                 address: {
-                    street: this.state.detailsData[0].street,
-                    city: this.state.detailsData[0].city,
-                    state: this.state.detailsData[0].state,
-                    zipcode: this.state.detailsData[0].zipcode
+                    street: this.state.detailsData[0].address.street,
+                    city: this.state.detailsData[0].address.city,
+                    state: this.state.detailsData[0].address.state,
+                    zipcode: this.state.detailsData[0].address.zipcode
                 },
                 phone: this.state.detailsData[0].phone,
                 image_url: this.state.detailsData[0].image_url
