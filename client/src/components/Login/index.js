@@ -32,7 +32,10 @@ class Login extends Component {
       })
         .then((member) => {
           console.log("login success: "+member.data.email);
-          this.props.history.push("/");
+          this.props.history.push({
+            pathname: "/",
+            state:{email: member.data.email}
+          });
         })
         .catch((err) => {
           console.log("err:"+err);

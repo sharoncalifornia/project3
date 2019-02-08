@@ -35,7 +35,10 @@ class Signup extends Component {
         "password": this.state.password
       }).then((member) => {
         console.log("signup success: "+member.data.email);
-        this.props.history.push("/");
+        this.props.history.push({
+          pathname: "/",
+          state:{email: member.data.email}
+        });
       }).catch((error) => {
         this.setState({
           errorMsg: "User is already exist, please login"
