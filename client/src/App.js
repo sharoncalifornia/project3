@@ -7,6 +7,7 @@ import Home from "./components/Home";
 import Result from "./components/Result";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import Listing from "./components/Listing";
 
 class App extends Component {
   render() {
@@ -19,6 +20,7 @@ class App extends Component {
             <Route exact path="/result" component={Result} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
+            <Route exact path="/listing" component={Listing} />
             <Route component={NotMatch} />
           </Switch>
         </div>

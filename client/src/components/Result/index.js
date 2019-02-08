@@ -19,7 +19,8 @@ class Result extends Component {
     state = {
         detailsData: [],
         saveStatuses: [],
-        checked: false
+        checked: false,
+        email: ""
     }
 
     handleFormSubmitSearch = event => {
@@ -27,6 +28,7 @@ class Result extends Component {
         const history = this.props.history;
         history.push({
             pathname: "/",
+            email: this.state.email
         });
     };
 
@@ -60,7 +62,8 @@ class Result extends Component {
 
     componentDidMount() {
         this.setState({
-            detailsData: this.props.location.state.details
+            detailsData: this.props.history.location.state.details,
+            email:this.props.history.location.state.email
         });
     }
     
@@ -75,7 +78,8 @@ class Result extends Component {
       }
     
     render() {
-        if (this.props.location.state !== undefined) {
+
+        if (this.props.history.location.state) {
             return (
                 <div className="fill result-image">
                     <div className="clearfix">
@@ -87,7 +91,7 @@ class Result extends Component {
                     <div className ="container" id="content">
                         <div className="row-div col-md-12">
                             {this.props.location.state.details ? this.props.location.state.details.map(detail => (
-                                <TravelCard rec={detail} onCheckboxChange={this.onCheckboxChange} key={detail.phone}
+                                <TravelCard rec={detail} key={detail.phone}
                                 />
                             )) : <p>No Results Found</p>}
                         </div>
