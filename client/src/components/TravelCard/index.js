@@ -5,9 +5,9 @@ import API from "../../utils/API";
 
 class TravelCard extends React.Component {
 
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   state = {
     id: 0

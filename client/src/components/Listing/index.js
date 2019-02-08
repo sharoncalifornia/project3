@@ -7,13 +7,13 @@ import {
     withRouter
 } from 'react-router-dom'
 import FormBtn from "../FormBtn";
-import API from "../../utils/API";
+// import API from "../../utils/API";
 
 class Listing extends Component {
 
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
 
     state = {
         detailsData: [],
@@ -66,6 +66,7 @@ class Listing extends Component {
         if (this.props.history.location.state) {
             email = this.props.history.location.state.email;
             console.log("email: " + email);
+            // this.setState({email: email});
             this.state.email = email;
         }
        
