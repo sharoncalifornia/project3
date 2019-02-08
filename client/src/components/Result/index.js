@@ -28,6 +28,7 @@ class Result extends Component {
         const history = this.props.history;
         history.push({
             pathname: "/",
+            email: this.state.email
         });
     };
 
@@ -61,7 +62,8 @@ class Result extends Component {
 
     componentDidMount() {
         this.setState({
-            detailsData: this.props.history.location.state.details
+            detailsData: this.props.history.location.state.details,
+            email:this.props.history.location.state.email
         });
     }
     
@@ -76,12 +78,6 @@ class Result extends Component {
       }
     
     render() {
-        let email="";
-        if (this.props.history.location.state) {
-            email = this.props.history.location.state.email;
-            console.log("email: "+ email);
-            this.state.email = email;
-        }
 
         if (this.props.history.location.state) {
             return (

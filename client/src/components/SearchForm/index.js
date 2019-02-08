@@ -108,6 +108,30 @@ class SearchForm extends React.Component {
     //     return resData;
     // }
 
+    componentDidMount() {
+        // TODO: get data from database
+        console.log("componentDidMount");
+        let email = "";
+        if (this.props.history.location.state) {
+            email = this.props.history.location.state.email;
+            console.log("email: " + email);
+            this.setState({
+                email: email,
+            });
+        }
+    }
+
+    handleShowListing = event => {
+        const history = this.props.history;
+        event.preventDefault();
+        history.push({
+            pathname: "/listing",
+            state: { 
+                email: this.state.email
+            }
+        });
+    }
+
     handleFormSubmit = event => {
         const history = this.props.history;
 
@@ -268,12 +292,14 @@ class SearchForm extends React.Component {
     };
 
     render() {
-        let email = "";
-        if (this.props.history.location.state) {
-            email = this.props.history.location.state.email;
-            console.log("email: " + email);
-            this.state.email = email;
-        }
+        // let email = "";
+        // if (this.props.history.location.state) {
+        //     email = this.props.history.location.state.email;
+        //     console.log("email: " + email);
+        //     this.setState({
+        //         email: email,
+        //     });
+        // }
 
         return (
             <div className="container-fluid col-md-3 mt-5">

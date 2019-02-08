@@ -9,7 +9,6 @@ import {
 import FormBtn from "../FormBtn";
 import API from "../../utils/API";
 
-
 class Listing extends Component {
 
     constructor(props) {
@@ -21,128 +20,79 @@ class Listing extends Component {
         email: ""
     }
 
+    // allow back to search page
     handleFormSubmitSearch = event => {
         event.preventDefault();
         const history = this.props.history;
         history.push({
             pathname: "/",
+            email: this.state.email
         });
     };
 
     handleFormSubmitSave = event => {
         event.preventDefault();
-        console.log("inside the submit form===",this.state.detailsData[0]);
-        if (this.state.detailsData[0].name) {
-            API.saveTravelsLocation({
-                name: this.state.detailsData[0].name,
-                category: this.state.detailsData[0].category,
-                description: this.state.detailsData[0].description,
-                rating: this.state.detailsData[0].rating,
-                price: this.state.detailsData[0].price,
-                address: {
-                    street: this.state.detailsData[0].street,
-                    city: this.state.detailsData[0].city,
-                    state: this.state.detailsData[0].state,
-                    zipcode: this.state.detailsData[0].zipcode
-                },
-                phone: this.state.detailsData[0].phone,
-                image_url: this.state.detailsData[0].image_url
-
-            }).then(result => {
-                console.log("inside results page repsonse recieved", result)
-            }).catch(error => console.log(error));
-
-
-            // call api to add data to DB
-        }
+        console.log("form submit");
     };
 
-    componentDidMount() {
-        // this.setState({
-        //     detailsData: this.props.location.state.details
-        // });
-        // get from database
-        // this.datailsData[0] = ""
-        // name: this.state.detailsData[0].name,
-        // category: this.state.detailsData[0].category,
-        // description: this.state.detailsData[0].description,
-        // rating: this.state.detailsData[0].rating,
-        // price: this.state.detailsData[0].price,
-        // address: {
-        //     street: this.state.detailsData[0].street,
-        //     city: this.state.detailsData[0].city,
-        //     state: this.state.detailsData[0].state,
-        //     zipcode: this.state.detailsData[0].zipcode
-        // },
-        // phone: this.state.detailsData[0].phone,
-        // image_url: this.state.detailsData[0].image_url
-        // get from database
+    getSaveListing = () => {
+        let rec = {};
+        let myArray = []
+        rec.name = "UCSD";
+        rec.phone = "(858) 452 - 9393";
+        rec.rating = "4";
+        rec.price = "$$$";
+        rec.image_url = "";
+        rec.address = {};
+        rec.address.street = "9500 Gilman Drive";
+        rec.address.city = "La Jolla";
+        rec.address.state = "CA";
+        rec.address.zipcode = "92093";
+        let details = [];
+        details.push(rec);
+        this.setState({
+            detailsData: details,
+        })
     }
-    
+
+    componentDidMount() {
+        // TODO: get data from database
+        console.log("componentDidMount");
+        this.getSaveListing();
+    }
+
     render() {
-        let email="";
+        let email = "";
         if (this.props.history.location.state) {
             email = this.props.history.location.state.email;
-            console.log("email: "+ email);
+            console.log("email: " + email);
             this.state.email = email;
         }
-        if (email === "")
-        return (
-            <h2>no Listing</h2>)
-        else
+       
+        if (this.state.email === "")
             return (
-            <h2>show listing</h2>
+                <h2>You don't have saved Listing</h2>)
+        else {
+            return (
+                <div className="fill result-image">
+                    <div className="clearfix">
+                        <div id="action-div">
+                            <FormBtn name="search" onClick={this.handleFormSubmitSearch}>Search again</FormBtn>
+                        </div>
+                    </div>
+                    <div className="container" id="content">
+                        <div className="row-div col-md-12">
+                            {this.state.detailsData ? this.state.detailsData.map(detail => (
+                                <TravelCard rec={detail} key={detail.phone}
+                                />
+                            )) : <p>No Results Found</p>}
+                        </div>
+                    </div>
+                </div>
             )
-        //     return (
-        //     <div className="container-fluid col-md-3 mt-5">
-        //     <form className="dest-form">
-        //         <div className="form-group row">
-        //             <label htmlFor="destination" className="col-form-label">Destination</label>
-        //             <input className="form-control" name="city_zip" placeholder="City or Zipcode"
-        //                 value={this.state.city_zip}
-        //                 onChange={this.handleInputChange} required />
-        //         </div>
-
-        //         <div className="form-group row">
-        //             <label htmlFor="nearby" className="col-form-label">Beach,&nbsp;Mountain,&nbsp;By the airport</label>
-        //             <input className="form-control" name="nearby" placeholder="General preferences"
-        //                 value={this.state.nearby}
-        //                 onChange={this.handleInputChange} required />
-        //         </div>
-
-        //         <div className="form-group row">
-        //             <label htmlFor="find" className="col-form-label my-0">Find:</label>
-        //             <div className="col-sm-12 ml-5">
-        //                 {this.createCheckboxes()}
-        //                 <FormBtn onClick={this.handleFormSubmit}>Search</FormBtn>
-        //             </div>
-        //         </div>
-        //     </form >
-        // </div >
-        //     );
-    //-----
-        // if (this.props.location.state != undefined) {
-        //     return (
-        //         <div className="fill result-image">
-        //             <div className="clearfix">
-        //                 <div id="action-div">
-        //                     <FormBtn name="search" onClick={this.handleFormSubmitSearch}>Search again</FormBtn>
-        //                     <FormBtn name="save" onClick={this.handleFormSubmitSave}>Save to My Account</FormBtn>
-        //                 </div>
-        //             </div>
-        //             <div className ="container" id="content">
-        //                 <div className="row-div col-md-12">
-        //                     {this.props.location.state.details ? this.props.location.state.details.map(detail => (
-        //                         <TravelCard rec={detail}  key={detail.phone}
-        //                         />
-        //                     )) : <p>No Results Found</p>}
-        //                 </div>
-        //             </div>
-        //         </div>
-        //     );
-        // } else
-        //     return <h2> Page Load Error </h2>
+        }
     }
 }
 
+//export default (Listing);
 export default withRouter(Listing);
