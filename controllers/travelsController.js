@@ -18,7 +18,9 @@ module.exports = {
     console.log("inside  travel controller  ",req.body);
     db.LocationInfo
       .create(req.body)
-      .then(dbModel => res.json(dbModel))
+      .then(dbModel => {
+        res.json(dbModel)
+      })
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
@@ -28,6 +30,7 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   remove: function(req, res) {
+    console.log("delete params", req.params)
     db.LocationInfo
       .findById({ _id: req.params.id })
       .then(dbModel => dbModel.remove())

@@ -7,6 +7,9 @@ router.route("/location")
 router.route("/preference")
   .post(membersPrefereneController.create);
 
+router.route("/location/:id")
+  .delete(travelsController.remove);
+
 // Matches with "/api/travels"
 // router.get("/");
 // router.post("/");

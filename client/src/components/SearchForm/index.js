@@ -19,6 +19,7 @@ class SearchForm extends React.Component {
         ),
         city_zip: "",
         nearby: "",
+        email: ""
     }
 
     createCheckbox = option => (
@@ -62,7 +63,7 @@ class SearchForm extends React.Component {
 
     formatResultDataArray = dataArray => {
         let resData = [];
-        for(var i = 0; i < dataArray.length; i++){
+        for (var i = 0; i < dataArray.length; i++) {
             //loop through data array
             dataArray[i].businesses.forEach(function (item, i) {
                 let rec = {};
@@ -80,7 +81,7 @@ class SearchForm extends React.Component {
             }
             );
         }
-        
+
         console.log("result number: " + resData.length)
         return resData;
     };
@@ -107,6 +108,30 @@ class SearchForm extends React.Component {
     //     return resData;
     // }
 
+    componentDidMount() {
+        // TODO: get data from database
+        console.log("componentDidMount");
+        let email = "";
+        if (this.props.history.location.state) {
+            email = this.props.history.location.state.email;
+            console.log("email: " + email);
+            this.setState({
+                email: email,
+            });
+        }
+    }
+
+    handleShowListing = event => {
+        const history = this.props.history;
+        event.preventDefault();
+        history.push({
+            pathname: "/listing",
+            state: { 
+                email: this.state.email
+            }
+        });
+    }
+
     handleFormSubmit = event => {
         const history = this.props.history;
 
@@ -115,7 +140,7 @@ class SearchForm extends React.Component {
 
         console.log(JSON.stringify(this.state));
         // call api, still need to validate the text fields to make sure they are not empty
-        if(this.state.city_zip){
+        if (this.state.city_zip) {
             const params = {
                 location: this.state.city_zip,
                 sort_by: "distance",
@@ -231,24 +256,27 @@ class SearchForm extends React.Component {
             }
             // console.log("Beginning Consolidated terms");
             // console.log("term length" + params.term.length);
-            if(params.term.length > 0){
+            if (params.term.length > 0) {
                 // console.log("params: " + JSON.stringify(params));
                 API.yelpSearchConsolidated(params)
-                .then(res => {
-                    // console.log("Consolidated return, setting state");
-                    // console.log("Setting STate: " + JSON.stringify(res.data));
-                    // return this.setState({result: res.data})
-                    // console.log(res);
-                    let restData = this.formatResultDataArray(res.data);
-                    history.push({
-                        pathname: "/result",
-                        state: { details: restData }
-                    });
-                })
-                .catch(err => console.log(err));
+                    .then(res => {
+                        // console.log("Consolidated return, setting state");
+                        // console.log("Setting STate: " + JSON.stringify(res.data));
+                        // return this.setState({result: res.data})
+                        // console.log(res);
+                        let restData = this.formatResultDataArray(res.data);
+                        history.push({
+                            pathname: "/result",
+                            state: { 
+                                details: restData,
+                                email: this.state.email
+                            }
+                        });
+                    })
+                    .catch(err => console.log(err));
             }
 
-            
+
         }
     };
 
@@ -264,6 +292,15 @@ class SearchForm extends React.Component {
     };
 
     render() {
+        // let email = "";
+        // if (this.props.history.location.state) {
+        //     email = this.props.history.location.state.email;
+        //     console.log("email: " + email);
+        //     this.setState({
+        //         email: email,
+        //     });
+        // }
+
         return (
             <div className="container-fluid col-md-3 mt-5">
                 <form className="dest-form">
@@ -285,9 +322,11 @@ class SearchForm extends React.Component {
                         <label htmlFor="find" className="col-form-label my-0">Find:</label>
                         <div className="col-sm-12 ml-5">
                             {this.createCheckboxes()}
+                            <FormBtn onClick={this.handleShowListing}>List my saved searches</FormBtn>
                             <FormBtn onClick={this.handleFormSubmit}>Search</FormBtn>
                         </div>
                     </div>
+                    
                 </form >
             </div >
         );
