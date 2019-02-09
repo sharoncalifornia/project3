@@ -311,19 +311,21 @@ class SearchForm extends React.Component {
                             onChange={this.handleInputChange} required />
                     </div>
 
-                    <div className="form-group row">
+                    {/* <div className="form-group row">
                         <label htmlFor="nearby" className="col-form-label">Beach,&nbsp;Mountain,&nbsp;By the airport</label>
                         <input className="form-control" name="nearby" placeholder="General preferences"
                             value={this.state.nearby}
                             onChange={this.handleInputChange} required />
-                    </div>
+                    </div> */}
 
                     <div className="form-group row">
                         <label htmlFor="find" className="col-form-label my-0">Find:</label>
                         <div className="col-sm-12 ml-5">
                             {this.createCheckboxes()}
-                            <FormBtn onClick={this.handleShowListing}>List my saved searches</FormBtn>
-                            <FormBtn onClick={this.handleFormSubmit}>Search</FormBtn>
+                            <div>
+                                <FormBtn onClick={this.handleFormSubmit}>Search</FormBtn>
+                                <FormBtn onClick={this.handleShowListing}>List my saved searches</FormBtn>
+                            </div>
                         </div>
                     </div>
                     

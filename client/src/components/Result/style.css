@@ -1,13 +1,14 @@
 .row-div {
 	height: auto;  
-	max-height: 1100px;   
-  overflow-y: scroll;   
+	max-height: 1100px;  
+  	overflow-y: scroll !important;   
 	width: 100%;
-	overflow: scroll;
+	/* overflow: scroll-y; */
+	overflow-x: hidden !important;
 }
 
 html {
-  overflow:   scroll;
+  overflow:   scroll-y;
 }
 ::-webkit-scrollbar {
     width: 0px;
