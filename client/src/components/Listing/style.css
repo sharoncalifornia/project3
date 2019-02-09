@@ -3,7 +3,7 @@
 	max-height: 1100px;   
   overflow-y: scroll;   
 	width: 98%;
-	overflow: hidden !important;
+	/* overflow: hidden !important; */
 }
 
 html {
