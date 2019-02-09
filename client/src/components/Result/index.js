@@ -71,7 +71,6 @@ class Result extends Component {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
-    console.log("checkmark click");
         this.setState({
           [name]: value
         });
@@ -85,7 +84,7 @@ class Result extends Component {
                     <div className="clearfix">
                         <div id="action-div">
                             <FormBtn name="search" onClick={this.handleFormSubmitSearch}>Search again</FormBtn>
-                            <FormBtn name="save" onClick={this.handleFormSubmitSave}>Save to My Account</FormBtn>
+                            {/* <FormBtn name="save" onClick={this.handleFormSubmitSave}>Save to My Account</FormBtn> */}
                         </div>
                     </div>
                     <div className ="container-fluid" id="content">

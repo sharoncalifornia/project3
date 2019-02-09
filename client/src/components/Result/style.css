@@ -1,6 +1,6 @@
 .row-div {
-	height: auto;  
-	max-height: 1100px;  
+	height: 900px;  
+	max-height: 1200px;  
   	overflow-y: scroll !important;   
 	width: 100%;
 	/* overflow: scroll-y; */

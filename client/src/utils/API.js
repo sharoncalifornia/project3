@@ -21,6 +21,11 @@ export default {
     saveTravelsPreference: function (data) {
         return axios.post("/api/travels/Preference", data);
     },
+
+    getTravelsPreference2: function(data) {
+        return axios.get("/api/travels/userPreference", data);
+    },
+
     deleteTravelsLocation: function(id) {
         return axios.delete("/api/travels/location/"+id)
     },

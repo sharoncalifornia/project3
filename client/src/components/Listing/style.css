@@ -1,9 +1,9 @@
 .row-div {
-	height: auto;  
+	height: 1000px;  
 	max-height: 1100px;   
   overflow-y: scroll;   
-	width: 100%;
-	overflow: scroll;
+	width: 98%;
+	overflow: hidden !important;
 }
 
 html {
@@ -21,7 +21,7 @@ html {
 
 .main {
   background: 
-		url("../../images/coronado-bridge.jpg");
+		url("../../images/delmar.jpg");
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: cover; 	
