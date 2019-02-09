@@ -45,7 +45,7 @@ class TravelCard extends React.Component {
     return (
       <div className="card col-md-4">
         <div className="card-image">
-          <img src={rec.image_url} width="300" height="200" alt="img" />
+          <img src={rec.image_url} width="275" height="200" alt="img" />
         </div>
         <div className="card-body p-1">
           <h5 className="card-title">{rec.name}</h5>
@@ -71,7 +71,7 @@ class TravelCard extends React.Component {
                 <div className="col-md-8">{rec.address.city}, {rec.address.zipcode}</div>
               </div>
               <div className="row">
-                <div className="col-md-8">
+                <div className="col-md-10">
                   <Checkbox
                     label="Save to my account"
                     onCheckboxChange={this.myCheckboxChange}
