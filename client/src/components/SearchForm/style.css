@@ -1,9 +1,10 @@
 .row-div {
-	height: 500px;  
-	max-height: 500px;  
+	height: 1000px;  
+	max-height: 1100px;  
   /* overflow-y: scroll;  */
-	width: 100%;
-	font-size:20px;
+	width: auto;
+  font-size:20px;
+  overflow-x: hidden;
 	/* font-family:'Lato', sans-serif; */
 }
 

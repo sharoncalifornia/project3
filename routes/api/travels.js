@@ -10,6 +10,9 @@ router.route("/preference")
 router.route("/location/:id")
   .delete(travelsController.remove);
 
+router.route("/userPreference")
+  .get(travelsController.getPreference);
+
 // Matches with "/api/travels"
 // router.get("/");
 // router.post("/");

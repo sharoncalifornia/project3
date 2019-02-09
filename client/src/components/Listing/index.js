@@ -2,18 +2,19 @@ import React, {
     Component
 } from "react";
 import "./style.css";
-import TravelCard from "../../components/TravelCard";
+import TravelCard from "../TravelCard";
 import {
     withRouter
 } from 'react-router-dom'
 import FormBtn from "../FormBtn";
-// import API from "../../utils/API";
+import API from "../../utils/API";
+// import { resolve } from "url";
 
 class Listing extends Component {
 
-    // constructor(props) {
-    //     super(props);
-    // }
+    constructor(props) {
+        super(props);
+    }
 
     state = {
         detailsData: [],
@@ -35,65 +36,75 @@ class Listing extends Component {
         console.log("form submit");
     };
 
+    formatResultData = data => {
+        let resData = [];
+        data.forEach(function (item, i) {
+            resData.push(item);
+        }
+        );
+        return resData;
+    };
+
     getSaveListing = () => {
-        let rec = {};
-        let myArray = []
-        rec.name = "UCSD";
-        rec.phone = "(858) 452 - 9393";
-        rec.rating = "4";
-        rec.price = "$$$";
-        rec.image_url = "";
-        rec.address = {};
-        rec.address.street = "9500 Gilman Drive";
-        rec.address.city = "La Jolla";
-        rec.address.state = "CA";
-        rec.address.zipcode = "92093";
-        let details = [];
-        details.push(rec);
-        this.setState({
-            detailsData: details,
-        })
+        const params = {
+            email: "aaa"
+        };
+
+        API.getTravelsPreference2(params)
+            .then(res => {
+                let restData = this.formatResultData(res.data);
+                console.log("***" + JSON.stringify(res))
+                this.setState({
+                    detailsData: restData,
+                    email: this.state.email
+                });
+                this.render();
+            })
+            .catch(err => console.log(err));
     }
+
 
     componentDidMount() {
         // TODO: get data from database
-        console.log("componentDidMount");
-        this.getSaveListing();
+        console.log("component mount");
+        const params = {
+            email: "aaa"
+        };
+        this.getSaveListing(params);
     }
 
     render() {
+        console.log("listing***");
         let email = "";
+        console.log("**", this.state.detailsData);
         if (this.props.history.location.state) {
             email = this.props.history.location.state.email;
-            console.log("email: " + email);
-            // this.setState({email: email});
-            this.state.email = email;
+            // console.log("email: " + email);
+            // this.state.email = email;
         }
-       
-        if (this.state.email === "")
-            return (
-                <h2>You don't have saved Listing</h2>)
-        else {
-            return (
-                <div className="fill result-image">
-                    <div className="clearfix">
-                        <div id="action-div">
-                            <FormBtn name="search" onClick={this.handleFormSubmitSearch}>Search again</FormBtn>
-                        </div>
-                    </div>
-                    <div className="container" id="content">
-                        <div className="row-div col-md-12">
-                            <div className="col-md-2"></div>
-                            {this.state.detailsData ? this.state.detailsData.map(detail => (
-                                <TravelCard rec={detail} key={detail.phone}
-                                />
-                            )) : <p>No Results Found</p>}
-                        </div>
+        console.log("here");
+        return (
+
+            <div className="fill result-image">
+                <div className="clearfix">
+                    <div id="action-div">
+                        <FormBtn name="search" onClick={this.handleFormSubmitSearch}>Search again</FormBtn>
                     </div>
                 </div>
-            )
-        }
+                <div className="container" id="content">
+                    <div className="row-div col-md-12">
+                        <h2 class="text-center">Your save listing</h2>
+                        {this.state.detailsData ? this.state.detailsData.map(detail => (
+                            <TravelCard rec={detail} key={detail.phone}
+                            />
+                        )) : <p>No Results Found</p>}
+                    </div>
+                </div>
+            </div>
+        )
+        // return (<h2>hello</h2>);
     }
+    // }
 }
 
 //export default (Listing);
